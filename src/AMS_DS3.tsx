@@ -134,7 +134,7 @@ export default function AMS_DS3() {
               >
                 รหัสผ่าน
               </span>
-              <AMSDS3LinkButton onClick={() => toast.info("Forgot password flow ของ AMS_DS3 ยังไม่ได้ clone ในรอบนี้")}>
+              <AMSDS3LinkButton onClick={() => navigate("/ams-ds3/forgot-password", { state: { email } })}>
                 ลืมรหัสผ่าน?
               </AMSDS3LinkButton>
             </div>

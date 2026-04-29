@@ -12,6 +12,11 @@ This repository contains the DS3-based clone deliverables extracted from the AMS
 - `src/AMS_DS3_VerifyEmail.tsx`
 - `src/AMS_DS3_VerifyEmailSuccess.tsx`
   - Additional cloned pages for the signup flow.
+- `src/AMS_DS3_ForgotPassword.tsx`
+- `src/AMS_DS3_ForgotPasswordCheckEmail.tsx`
+- `src/AMS_DS3_CreatePassword.tsx`
+- `src/AMS_DS3_LinkExpired.tsx`
+  - Additional cloned pages for the forgot-password flow.
 - `src/components/AMSDS3AuthScaffold.tsx`
   - Shared auth scaffold used to keep the cloned layout consistent.
 - `src/routes.reference.tsx`

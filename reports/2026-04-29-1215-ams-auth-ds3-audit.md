@@ -66,6 +66,10 @@
 - `/ams-ds3/signup/set-password`
 - `/ams-ds3/signup/verify-email`
 - `/ams-ds3/signup/verify-email/success`
+- `/ams-ds3/forgot-password`
+- `/ams-ds3/forgot-password/check-email`
+- `/ams-ds3/forgot-password/create-password`
+- `/ams-ds3/forgot-password/link-expired`
 - หน้าสุดท้ายส่งกลับ sign in ที่ `/ams-ds3`
 
 ## ผลการตรวจ preview
@@ -75,9 +79,15 @@
 - `http://127.0.0.1:4174/ams-ds3/signup/set-password` ตอบ `200`
 - `http://127.0.0.1:4174/ams-ds3/signup/verify-email` ตอบ `200`
 - `http://127.0.0.1:4174/ams-ds3/signup/verify-email/success` ตอบ `200`
+- `http://127.0.0.1:4174/ams-ds3/forgot-password` ตอบ `200`
+- `http://127.0.0.1:4174/ams-ds3/forgot-password/check-email` ตอบ `200`
+- `http://127.0.0.1:4174/ams-ds3/forgot-password/create-password` ตอบ `200`
+- `http://127.0.0.1:4174/ams-ds3/forgot-password/link-expired` ตอบ `200`
 - `http://127.0.0.1:4174/` ใช้งานแล้วไป flow ใหม่แทน
 - `http://127.0.0.1:4174/signup` ใช้งานแล้วไป flow ใหม่แทน
 - `http://127.0.0.1:4174/signup/register` ใช้งานแล้วไป flow ใหม่แทน
+- `http://127.0.0.1:4174/forgot-password` ใช้งานแล้วไป flow ใหม่แทน
+- `http://127.0.0.1:4174/forgot-password/check-email` ใช้งานแล้วไป flow ใหม่แทน
 - `npm run build` ผ่าน
 
 ## สิ่งที่ปรับในรอบนี้
@@ -89,8 +99,13 @@
   - `src/app/pages/AMS_DS3_SetPassword.tsx`
   - `src/app/pages/AMS_DS3_VerifyEmail.tsx`
   - `src/app/pages/AMS_DS3_VerifyEmailSuccess.tsx`
+- เพิ่มหน้าชุด forgot-password flow ใหม่:
+  - `src/app/pages/AMS_DS3_ForgotPassword.tsx`
+  - `src/app/pages/AMS_DS3_ForgotPasswordCheckEmail.tsx`
+  - `src/app/pages/AMS_DS3_CreatePassword.tsx`
+  - `src/app/pages/AMS_DS3_LinkExpired.tsx`
 - เพิ่ม route ใหม่ใน `src/app/routes.tsx`
-- redirect route auth เดิม (`/`, `/signup`, `/signup/register`, `/signup/set-password`, `/signup/verify-email`, `/signup/verify-email/success`) ให้เข้า `AMS_DS3` flow เพื่อกันการเด้งกลับหน้าเก่า
+- redirect route auth เดิม (`/`, `/signup`, `/signup/register`, `/signup/set-password`, `/signup/verify-email`, `/signup/verify-email/success`, `/forgot-password`, `/forgot-password/check-email`, `/forgot-password/create-password`, `/forgot-password/link-expired`) ให้เข้า `AMS_DS3` flow เพื่อกันการเด้งกลับหน้าเก่า
 
 ## สิ่งที่ยังดึงจาก MCP/DS มาใช้ตรง ๆ ไม่ได้
 - `ssk-logo`
