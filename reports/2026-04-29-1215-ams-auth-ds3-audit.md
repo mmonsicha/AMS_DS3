@@ -1,7 +1,7 @@
 # รายงานการใช้งาน Sellsuki Design System
 
 ## สรุปงาน
-- งาน: ตรวจสอบการเชื่อม MCP กับ DS3, ดันการใช้ DS component ในระบบ authentication ให้มากที่สุดโดยไม่สร้าง pattern ใหม่, และวิเคราะห์ gap ระหว่าง MCP, package React, และโค้ดปัจจุบัน
+- งาน: clone ดีไซน์เดิมจาก `Amsauthentication-main` มาเป็น flow ใหม่ชื่อ `AMS_DS3` โดยใช้ DS package/MCP เท่าที่ React bridge ปัจจุบันรองรับ และไม่ออกแบบหน้าใหม่แทนเอง
 - วันที่: 2026-04-29 12:15
 - พื้นที่ทำงานหรือรีโป: `C:\Users\uSeR\Desktop\Sellsuki\AMS\Amsauthentication-main\Amsauthentication-main`
 
@@ -11,32 +11,29 @@
 - เวอร์ชัน package React ที่ติดตั้งในโปรเจกต์: `@uxuissk/design-system@0.7.2`
 - หลักฐานจาก MCP:
   - `mcp__sellsuki_design_system__list_components` คืนค่า `version: 3.1.2`, `total: 91`
-  - `mcp__sellsuki_design_system__get_design_tokens(category=semantic|spacing|radius)` คืนค่า `version: 3.1.2`
+  - `mcp__sellsuki_design_system__get_design_tokens(category=all)` คืนค่า token set ของ `3.1.2`
+
+## สิ่งที่แก้ความเข้าใจจากรอบก่อน
+- รอบก่อนตีความผิดเป็น “สร้างหน้าใหม่ด้วย DS”
+- รอบนี้แก้เป็น “clone ดีไซน์เดิมของ auth screens” แล้วค่อยแทน element ที่ใช้ได้ด้วย DS package จริง
+- ดังนั้น `AMS_DS3` ตอนนี้เป็น clone flow ของดีไซน์เดิม ไม่ใช่ DS showcase page
 
 ## Components ที่เรียกใช้งาน
-- จาก DS package ที่ใช้งานอยู่จริงในโค้ด:
-  - `ToastContainer`, `toast`
-  - `TopNavbar`
-  - `Sidebar`
-  - `ConfirmDialog`
-  - `DSButton`
-  - `DSInput`
-  - `DSCheckbox`
-  - `Divider`
+- จาก DS package ที่ใช้งานจริงใน flow `AMS_DS3`
+  - `Card`
+  - `Button`
+  - `Input`
   - `FormField`
   - `FormHelperText`
-  - `FormError`
-  - `FormSuccess`
-  - `Card`
-- จาก MCP catalog ที่ตรวจสอบว่ามีอยู่ใน DS3:
+  - `Checkbox`
+  - `Divider`
+  - `toast`
+- จาก MCP catalog ที่ยืนยันว่ามีใน DS3
   - `ssk-button`
   - `ssk-input`
   - `ssk-checkbox`
   - `ssk-divider`
   - `ssk-card`
-  - `ssk-sidebar`
-  - `ssk-top-navbar`
-  - `ssk-toast-provider`
   - `ssk-heading`
   - `ssk-text_2`
   - `ssk-logo`
@@ -45,107 +42,116 @@
 ## Tokens ที่เรียกใช้งาน
 - หมวดหมู่: `semantic`
 - รายการ token:
+  - `--bg-disabled`
   - `--text-primary`
   - `--text-secondary`
-  - `--bg-primary`
-  - `--bg-primary-hover`
-  - `--bg-disabled`
-  - `--stroke-primary`
-  - `--stroke-secondary`
   - `--fg-brand-primary`
 - หมวดหมู่: `spacing`
 - รายการ token:
-  - `xs = 4px`
   - `sm = 8px`
-  - `md = 12px`
   - `lg = 16px`
   - `xl = 24px`
 - หมวดหมู่: `radius`
 - รายการ token:
-  - `sm = 4px`
-  - `md = 6px`
   - `lg = 8px`
-  - `xl = 10px`
 - หมวดหมู่: `typography`
 - รายการ token:
-  - ใช้งานผ่าน stylesheet และ font asset ของ DS package
-  - ยังไม่มี explicit token reference ในโค้ดแอป เช่น CSS variable ของ typography
+  - ใช้ font asset จาก DS package
+  - ยังต้องอ้างอิง typography style เดิมบางส่วน เพราะไม่มี React binding ตรงสำหรับ `ssk-heading` / `ssk-text_2`
+
+## Flow `AMS_DS3` ที่ทำเสร็จแล้ว
+- `/ams-ds3` sign in
+- `/ams-ds3/signup`
+- `/ams-ds3/signup/register`
+- `/ams-ds3/signup/set-password`
+- `/ams-ds3/signup/verify-email`
+- `/ams-ds3/signup/verify-email/success`
+- หน้าสุดท้ายส่งกลับ sign in ที่ `/ams-ds3`
+
+## ผลการตรวจ preview
+- `http://127.0.0.1:4174/ams-ds3` ตอบ `200`
+- `http://127.0.0.1:4174/ams-ds3/signup` ตอบ `200`
+- `http://127.0.0.1:4174/ams-ds3/signup/register` ตอบ `200`
+- `http://127.0.0.1:4174/ams-ds3/signup/set-password` ตอบ `200`
+- `http://127.0.0.1:4174/ams-ds3/signup/verify-email` ตอบ `200`
+- `http://127.0.0.1:4174/ams-ds3/signup/verify-email/success` ตอบ `200`
+- `npm run build` ผ่าน
 
 ## สิ่งที่ปรับในรอบนี้
-- เปลี่ยน wrapper ใน `src/app/components/DesignSystemSsk.tsx` ให้ลงบน DS package จริงมากขึ้น
-  - `SskCheckbox` ใช้ `DSCheckbox`
-  - `SskFormField` ใช้ `FormField`
-  - `SskHelperText` ใช้ `FormHelperText`
-  - `SskErrorText` ใช้ `FormError`
-  - `SskSuccessText` ใช้ `FormSuccess`
-  - `SskCard` ใช้ `Card`
-- เปลี่ยน `src/app/pages/CreatePasswordPage.tsx` จาก input/button ที่เขียนเอง ให้กลับมาใช้ wrapper ที่อิง DS
-- เปลี่ยน `src/app/pages/LinkExpiredPage.tsx` ให้ใช้ `SskButton`, `SskLink`, `SskPageTitle`, `SskSubTitle`
-- ตรวจสอบ build หลังแก้ไขแล้วผ่านด้วย `npm run build`
+- เพิ่ม scaffold กลางสำหรับ clone auth layout เดิมที่ `src/app/components/AMSDS3AuthScaffold.tsx`
+- ปรับ `src/app/pages/AMS_DS3.tsx` ให้เป็น sign-in clone ของดีไซน์เดิม ไม่ใช่หน้าออกแบบใหม่
+- เพิ่มหน้าชุด signup flow ใหม่:
+  - `src/app/pages/AMS_DS3_SignUp.tsx`
+  - `src/app/pages/AMS_DS3_Register.tsx`
+  - `src/app/pages/AMS_DS3_SetPassword.tsx`
+  - `src/app/pages/AMS_DS3_VerifyEmail.tsx`
+  - `src/app/pages/AMS_DS3_VerifyEmailSuccess.tsx`
+- เพิ่ม route ใหม่ใน `src/app/routes.tsx`
+
+## สิ่งที่ยังดึงจาก MCP/DS มาใช้ตรง ๆ ไม่ได้
+- `ssk-logo`
+  - React package ปัจจุบันไม่มี named export ที่ใช้แทนได้ตรง ๆ
+  - จึงยังต้องใช้ `SellsukiLogo.tsx` จากโค้ดเดิม
+- `ssk-heading`
+  - MCP มี แต่ React package ไม่มี React component ที่ map ตรง
+  - จึงยังต้องใช้ heading style เดิมบางส่วนใน scaffold
+- `ssk-text_2`
+  - MCP มี แต่ package ไม่มี export ตรงสำหรับ text primitive เดียวกัน
+  - จึงยังต้องคง subtitle/body style เดิมบางส่วน
+- `ssk-app-shell`
+  - MCP มี แต่ package React ที่ใช้จริงยังไม่มี export ตรง
+  - จึงยังต้องใช้ auth scaffold แบบเขียนโครงด้วย React/CSS เดิมร่วมกับ DS `Card`
+- social auth button
+  - package ปัจจุบันไม่มี component เฉพาะสำหรับปุ่ม social ตามดีไซน์เดิม
+  - รอบนี้ใช้ `Button variant="outline"` เป็น fallback ที่ใกล้ที่สุดและรายงานไว้ชัดเจน
+- password strength meter
+  - ยังไม่พบ DS React component ตรงจาก package ปัจจุบัน
+  - รอบนี้จึงไม่สร้าง meter ใหม่ใน flow `AMS_DS3_SetPassword`
 
 ## เปรียบเทียบกับ Storybook / React package
 - MCP catalog ระบุ DS3 `3.1.2` และมี component ทั้งหมด `91` ตัว
 - React package ที่ติดตั้งอยู่ในโปรเจกต์ export แบบ named export ได้ `74` รายการจาก `dist/types/index.d.ts`
-- package มี script `storybook` และ `build-storybook` ใน `package.json`
-- แต่ package ที่ถูกติดตั้งใน `node_modules` ไม่มีไฟล์ `.stories.*` ติดมาด้วย จึงไม่สามารถเทียบกับ story implementation จริงจาก workspace นี้ได้
-- สรุปเชิงปฏิบัติ:
+- package มี script `storybook` และ `build-storybook`
+- แต่ artifact ที่ติดตั้งมาใน `node_modules` ไม่มีไฟล์ `.stories.*`
+- สรุป:
   - เทียบ MCP กับ React package ได้
-  - เทียบกับ Storybook source จริงไม่ได้ใน repo นี้ เพราะ artifact ของ story ไม่ถูก publish มาด้วย
+  - เทียบกับ story source จริงจาก package release ใน repo นี้ไม่ได้
 
-## วิเคราะห์ว่าใช้ component เหล่านี้ไม่ได้เพราะอะไร
-- ใช้ไม่ได้เพราะ package React ไม่ expose component ตาม MCP ครบ
-  - ตัวอย่างจาก MCP ที่พบ แต่ไม่เห็น React export ตรงใน package ที่ติดตั้ง: `ssk-logo`, `ssk-heading`, `ssk-text_2`, `ssk-app-shell`
-  - ผลคือหน้าหลายหน้าในแอปยังต้องใช้ `SellsukiLogo`, typography custom, และ layout custom
-- ใช้ไม่ได้เพราะโค้ดปัจจุบันถูก generate มาจาก Figma bundle และมี hardcode ฝังอยู่
-  - `src/app/components/DesignSystemSsk.tsx` ยังมีสี, spacing, radius, social button, password strength, link style และ typography style ที่เขียนเอง
-  - `src/app/components/AuthLayout.tsx` ยังใช้ background image, ขนาด card, spacing และ layout แบบ custom
-  - `src/app/pages/DashboardPage.tsx` ยังมี dropdown account menu และ icon set ที่เขียนเอง
-  - `src/app/pages/VerifyEmailPage.tsx`, `ForgotPasswordCheckEmailPage.tsx`, `VerifyEmailSuccessPage.tsx` ยังมี icon/typography แบบ custom
-- ใช้ไม่ได้เพราะ MCP เป็นคนละ abstraction กับ React package
-  - MCP list เป็น DS3 web component catalog (`ssk-*`)
-  - แอปนี้ใช้ React package (`@uxuissk/design-system`)
-  - ไม่มี mapping contract ที่บอกชัดว่า `ssk-heading` เท่ากับ React export อะไร หรือ `ssk-logo` ใช้งานใน React อย่างไร
-
-## เกิดจากจุดไหน
-- จุดที่ 1: Design system distribution layer
-  - catalog ใน MCP กับ React package คนละ surface area และ versioning คนละรูปแบบ
-- จุดที่ 2: Frontend architecture ของโปรเจกต์นี้
-  - แอปถูกต่อยอดจาก Figma-exported bundle ไม่ได้เริ่มจาก DS primitives โดยตรง
-- จุดที่ 3: Documentation / Storybook publishing
-  - มี signal ว่ามี Storybook แต่ artifact ที่ติดตั้งมาไม่พอให้ทีมโค้ดอ้างอิง story implementation จริง
+## วิเคราะห์สาเหตุของ gap
+- สาเหตุที่ 1: MCP catalog กับ React package เป็นคนละ distribution surface
+  - MCP แสดงรายการแบบ `ssk-*`
+  - แอปนี้ใช้งานผ่าน React package `@uxuissk/design-system`
+- สาเหตุที่ 2: version naming ไม่ตรงกัน
+  - MCP ใช้ `3.1.2`
+  - package React ใช้ `0.7.2`
+- สาเหตุที่ 3: original app มาจาก Figma-exported bundle
+  - หลายจุดของหน้าตาเดิมจึงเป็น custom implementation ตั้งต้น ไม่ได้เริ่มจาก DS primitives
 
 ## ต้องแก้ไขยังไง
 - ฝั่ง Coding
-  - แยก audit ว่า component ใดควรใช้ DS ตรง ๆ และลบ wrapper/custom ที่ซ้ำกับ DS ออกทีละตัว
-  - เริ่มจาก auth flow ทั้งหมด: form fields, helper/error/success, cards, modals, dropdown/menu, icon button
-  - ย้าย raw color / spacing / radius ที่ยังเหลือให้เป็น DS token usage หรือปล่อยให้ DS component จัดการเอง
-  - เพิ่ม type-level verification หรือ visual regression เพื่อกันไม่ให้ custom UI กลับมาอีก
+  - clone flow ที่เหลือด้วยแนวทางเดียวกัน: ยึดหน้าตาเดิมก่อน แล้วแทนที่ด้วย DS package เฉพาะจุดที่ bridge รองรับจริง
+  - ลด hardcoded typography/layout ลงเมื่อ React binding ของ DS พร้อม
+  - ถ้าจะให้ 100% DS จริง ต้องรอ package รองรับ primitive ที่ MCP ระบุ
 - ฝั่ง Design System / Design Ops
-  - publish mapping ชัดเจนระหว่าง MCP `ssk-*` กับ React package export
-  - ถ้า `ssk-logo`, `ssk-heading`, `ssk-text_2`, `ssk-app-shell` เป็น component มาตรฐานจริง ควรมี React binding และ docs ที่ใช้งานได้ใน package เดียวกัน
-  - publish Storybook references หรือ docs page ที่ทีมโค้ดเข้าถึงได้จาก artifact ที่ใช้งานจริง
+  - publish mapping ชัดเจนระหว่าง MCP `ssk-*` กับ React export
+  - เพิ่ม React bindings สำหรับ `logo`, `heading`, `text`, `app-shell`
+  - publish docs/story artifact ที่สอดคล้องกับ package release
 
 ## ควรส่ง issue ถึงฝั่ง design ไหม
 - ควรส่ง `ใช่`
 - เหตุผล:
-  - version signal ระหว่าง MCP (`3.1.2`) กับ React package (`0.7.2`) ทำให้ทีมโค้ดสับสนได้ง่าย
-  - component catalog ใน MCP ไม่ map ตรงกับสิ่งที่เรียกใช้ได้จริงใน React package
-  - ไม่มี story/source reference ที่ใช้ยืนยันการใช้งาน component จาก artifact ที่ติดตั้งจริง
-- หัวข้อ issue ที่แนะนำ:
-  - ขอ component mapping ระหว่าง DS3 MCP catalog กับ React package
-  - ขอ React export สำหรับ `logo`, `heading`, `text`, `app-shell`
-  - ขอเผยแพร่ Storybook/docs artifact ที่ตรงกับ package release
+  - เพื่อขอ mapping ระหว่าง MCP catalog กับ React package
+  - เพื่อขอ React bindings ของ primitive สำคัญที่ทำให้ clone ดีไซน์เดิมได้ไม่ครบ
+  - เพื่อให้ทีมโค้ดไม่ต้องเดาว่า element ไหนเป็น DS จริงและ element ไหนยังไม่มี bridge
 
 ## Coding ควรส่ง report ขึ้น GitHub ไหม
 - ควรส่ง `ใช่`
-- รูปแบบที่แนะนำ:
-  - ถ้ามี repo จริงและ remote ใช้งานได้: เปิด issue ใหม่พร้อมแนบรายงานฉบับนี้
-  - ถ้ามี PR ที่กำลัง refactor DS อยู่: วางเป็น PR comment เพิ่ม
-  - ถ้ายังไม่พร้อมคุยข้ามทีม: commit รายงานนี้ไว้ใน `docs/reports/sellsuki-dss/`
+- รอบนี้ทำแล้ว
 
 ## สถานะการส่งขึ้น GitHub
-- วิธีที่ใช้: `markdown-commit (fallback target only)`
-- เป้าหมาย: `docs/reports/sellsuki-dss/2026-04-29-1215-ams-auth-ds3-audit.md`
-- ผลลัพธ์: `ไม่สำเร็จใน GitHub`
-  - สาเหตุ: workspace ปัจจุบันไม่ใช่ git repository (`git rev-parse --show-toplevel` และ `git remote -v` ใช้งานไม่ได้)
-  - สิ่งที่ทำแทน: บันทึกรายงานลงไฟล์ markdown ใน workspace แล้ว
+- วิธีที่ใช้: `git commit + push`
+- เป้าหมาย: `https://github.com/mmonsicha/AMS_DS3.git`
+- ผลลัพธ์: `สำเร็จ`
+- หมายเหตุ:
+  - repo ปลายทางถูก clone มาไว้ที่ `C:\tmp\AMS_DS3_repo`
+  - มีการ push เวอร์ชันก่อนหน้าแล้ว และต้อง sync รอบล่าสุดอีกครั้งหลังเพิ่ม signup flow และแก้ความเข้าใจเรื่อง clone design

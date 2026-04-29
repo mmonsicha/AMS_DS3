@@ -1,13 +1,21 @@
 # AMS_DS3
 
-This repository contains the DS3-first deliverables extracted from the AMS authentication frontend.
+This repository contains the DS3-based clone deliverables extracted from the AMS authentication frontend.
 
 ## Included files
 
 - `src/AMS_DS3.tsx`
-  - A new DS3-driven page that uses the installed `@uxuissk/design-system` package directly.
+  - AMS_DS3 sign-in page cloned from the original auth design.
+- `src/AMS_DS3_SignUp.tsx`
+- `src/AMS_DS3_Register.tsx`
+- `src/AMS_DS3_SetPassword.tsx`
+- `src/AMS_DS3_VerifyEmail.tsx`
+- `src/AMS_DS3_VerifyEmailSuccess.tsx`
+  - Additional cloned pages for the signup flow.
+- `src/components/AMSDS3AuthScaffold.tsx`
+  - Shared auth scaffold used to keep the cloned layout consistent.
 - `src/routes.reference.tsx`
-  - Route reference showing where `AMS_DS3` was added in the source app.
+  - Route reference showing where the full `AMS_DS3` flow was added in the source app.
 - `reports/2026-04-29-1215-ams-auth-ds3-audit.md`
   - Thai audit report covering MCP availability, DS package coverage, current gaps, and recommendations.
 
@@ -15,7 +23,7 @@ This repository contains the DS3-first deliverables extracted from the AMS authe
 
 The MCP catalog reports DS3 version `3.1.2`, while the React package installed in the source project is `@uxuissk/design-system@0.7.2`.
 
-Because of that mismatch, some MCP-listed items could not be pulled into the React page as-is, especially:
+Because of that mismatch, some MCP-listed items could not be pulled into the React pages as-is, especially:
 
 - `ssk-logo`
 - `ssk-heading`
