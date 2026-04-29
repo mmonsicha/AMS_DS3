@@ -75,6 +75,9 @@
 - `http://127.0.0.1:4174/ams-ds3/signup/set-password` ตอบ `200`
 - `http://127.0.0.1:4174/ams-ds3/signup/verify-email` ตอบ `200`
 - `http://127.0.0.1:4174/ams-ds3/signup/verify-email/success` ตอบ `200`
+- `http://127.0.0.1:4174/` ใช้งานแล้วไป flow ใหม่แทน
+- `http://127.0.0.1:4174/signup` ใช้งานแล้วไป flow ใหม่แทน
+- `http://127.0.0.1:4174/signup/register` ใช้งานแล้วไป flow ใหม่แทน
 - `npm run build` ผ่าน
 
 ## สิ่งที่ปรับในรอบนี้
@@ -87,6 +90,7 @@
   - `src/app/pages/AMS_DS3_VerifyEmail.tsx`
   - `src/app/pages/AMS_DS3_VerifyEmailSuccess.tsx`
 - เพิ่ม route ใหม่ใน `src/app/routes.tsx`
+- redirect route auth เดิม (`/`, `/signup`, `/signup/register`, `/signup/set-password`, `/signup/verify-email`, `/signup/verify-email/success`) ให้เข้า `AMS_DS3` flow เพื่อกันการเด้งกลับหน้าเก่า
 
 ## สิ่งที่ยังดึงจาก MCP/DS มาใช้ตรง ๆ ไม่ได้
 - `ssk-logo`

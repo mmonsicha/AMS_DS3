@@ -1,10 +1,4 @@
-import { createBrowserRouter } from "react-router";
-import SignInPage from "./pages/SignInPage";
-import SignUpPage from "./pages/SignUpPage";
-import SignUpRegisterPage from "./pages/SignUpRegisterPage";
-import SignUpSetPasswordPage from "./pages/SignUpSetPasswordPage";
-import VerifyEmailPage from "./pages/VerifyEmailPage";
-import VerifyEmailSuccessPage from "./pages/VerifyEmailSuccessPage";
+import { createBrowserRouter, Navigate } from "react-router";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ForgotPasswordCheckEmailPage from "./pages/ForgotPasswordCheckEmailPage";
 import CreatePasswordPage from "./pages/CreatePasswordPage";
@@ -18,12 +12,12 @@ import AMS_DS3_VerifyEmail from "./pages/AMS_DS3_VerifyEmail";
 import AMS_DS3_VerifyEmailSuccess from "./pages/AMS_DS3_VerifyEmailSuccess";
 
 export const router = createBrowserRouter([
-  { path: "/", Component: SignInPage },
-  { path: "/signup", Component: SignUpPage },
-  { path: "/signup/register", Component: SignUpRegisterPage },
-  { path: "/signup/set-password", Component: SignUpSetPasswordPage },
-  { path: "/signup/verify-email", Component: VerifyEmailPage },
-  { path: "/signup/verify-email/success", Component: VerifyEmailSuccessPage },
+  { path: "/", Component: () => <Navigate replace to="/ams-ds3" /> },
+  { path: "/signup", Component: () => <Navigate replace to="/ams-ds3/signup" /> },
+  { path: "/signup/register", Component: () => <Navigate replace to="/ams-ds3/signup/register" /> },
+  { path: "/signup/set-password", Component: () => <Navigate replace to="/ams-ds3/signup/set-password" /> },
+  { path: "/signup/verify-email", Component: () => <Navigate replace to="/ams-ds3/signup/verify-email" /> },
+  { path: "/signup/verify-email/success", Component: () => <Navigate replace to="/ams-ds3/signup/verify-email/success" /> },
   { path: "/forgot-password", Component: ForgotPasswordPage },
   { path: "/forgot-password/check-email", Component: ForgotPasswordCheckEmailPage },
   { path: "/forgot-password/create-password", Component: CreatePasswordPage },
