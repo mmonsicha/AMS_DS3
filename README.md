@@ -28,6 +28,10 @@ This repository contains the DS3-based clone deliverables extracted from the AMS
 
 The MCP catalog reports DS3 version `3.1.2`, while the React package installed in the source project is `@uxuissk/design-system@0.7.2`.
 
+## Deployment note
+
+This repo includes `vercel.json` with a rewrite to `index.html` so direct route access like `/ams-ds3` works correctly on Vercel for this Vite SPA.
+
 Because of that mismatch, some MCP-listed items could not be pulled into the React pages as-is, especially:
 
 - `ssk-logo`
