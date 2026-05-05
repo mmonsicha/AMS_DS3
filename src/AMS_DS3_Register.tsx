@@ -1,6 +1,10 @@
+/**
+ * AMS_DS3_Register
+ * DS3: DSButton, DSInput, FormField
+ */
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { Button, FormField, FormHelperText, Input } from "@uxuissk/design-system";
+import { DSButton, DSInput } from "@uxuissk/design-system";
 import {
   AMSDS3AccentText,
   AMSDS3AuthScaffold,
@@ -24,21 +28,12 @@ export default function AMS_DS3_Register() {
 
   const handleRegister = async () => {
     let valid = true;
-
-    if (!firstName.trim()) {
-      setFirstNameError("กรุณาระบุชื่อ");
-      valid = false;
-    }
-
-    if (!lastName.trim()) {
-      setLastNameError("กรุณาระบุนามสกุล");
-      valid = false;
-    }
-
+    if (!firstName.trim()) { setFirstNameError("กรุณาระบุชื่อ"); valid = false; }
+    if (!lastName.trim()) { setLastNameError("กรุณาระบุนามสกุล"); valid = false; }
     if (!valid) return;
 
     setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 1200));
+    await new Promise((r) => setTimeout(r, 1200));
     setLoading(false);
     navigate("/ams-ds3/signup/set-password", {
       state: { email, firstName: firstName.trim(), lastName: lastName.trim() },
@@ -51,44 +46,42 @@ export default function AMS_DS3_Register() {
         <>
           <AMSDS3LogoHeader title="สมัครสมาชิก Sellsuki" />
           <AMSDS3AccentText>{email}</AMSDS3AccentText>
-          <AMSDS3LinkButton onClick={() => navigate("/ams-ds3/signup")} size="24px">
+          <AMSDS3LinkButton onClick={() => navigate("/ams-ds3/signup")}>
             สมัครด้วยอีเมลอื่น
           </AMSDS3LinkButton>
         </>
       }
     >
-      <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "100%" }}>
-        <FormField name="firstName" label="ชื่อ" error={firstNameError}>
-          <Input
-            fullWidth
-            placeholder="ระบุชื่อ"
-            value={firstName}
-            onChange={(event) => {
-              setFirstName(event.target.value);
-              setFirstNameError("");
-            }}
-          />
-        </FormField>
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-16)", width: "100%" }}>
+        <DSInput
+          fullWidth
+          label="ชื่อ"
+          placeholder="ระบุชื่อ"
+          inputSize="lg"
+          state={firstNameError ? "error" : "default"}
+          errorMessage={firstNameError}
+          value={firstName}
+          onChange={(e) => { setFirstName(e.target.value); setFirstNameError(""); }}
+        />
 
-        <FormField name="lastName" label="นามสกุล" error={lastNameError}>
-          <Input
-            fullWidth
-            placeholder="ระบุนามสกุล"
-            value={lastName}
-            onChange={(event) => {
-              setLastName(event.target.value);
-              setLastNameError("");
-            }}
-          />
-        </FormField>
+        <DSInput
+          fullWidth
+          label="นามสกุล"
+          placeholder="ระบุนามสกุล"
+          inputSize="lg"
+          state={lastNameError ? "error" : "default"}
+          errorMessage={lastNameError}
+          value={lastName}
+          onChange={(e) => { setLastName(e.target.value); setLastNameError(""); }}
+        />
 
-        <Button fullWidth size="lg" loading={loading} onClick={handleRegister} disabled={!canProceed}>
+        <DSButton fullWidth size="lg" loading={loading} onClick={handleRegister} disabled={!canProceed}>
           ต่อไป
-        </Button>
+        </DSButton>
 
-        <FormHelperText className="text-center text-[20px]">
+        <p style={{ fontFamily: "DB HeaventRounded, sans-serif", fontSize: "var(--text-p)", margin: 0, textAlign: "center" }}>
           <AMSDS3LinkButton onClick={() => navigate("/ams-ds3/signup")}>← กลับ</AMSDS3LinkButton>
-        </FormHelperText>
+        </p>
       </div>
     </AMSDS3AuthScaffold>
   );

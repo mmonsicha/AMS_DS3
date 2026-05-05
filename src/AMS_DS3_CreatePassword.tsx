@@ -1,6 +1,11 @@
+/**
+ * AMS_DS3_CreatePassword
+ * DS3: DSButton, DSInput
+ * Gap: ยังไม่มี DS password-strength component
+ */
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { Button, FormField, Input } from "@uxuissk/design-system";
+import { DSButton, DSInput, toast } from "@uxuissk/design-system";
 import {
   AMSDS3AuthScaffold,
   AMSDS3LogoHeader,
@@ -31,82 +36,57 @@ export default function AMS_DS3_CreatePassword() {
 
   const handleSubmit = async () => {
     let valid = true;
-
-    if (!newPassword.trim()) {
-      setNewError("กรุณาระบุรหัสผ่านใหม่");
-      valid = false;
-    } else if (passwordStrength < 2) {
-      setNewError("รหัสผ่านอ่อนแอเกินไป กรุณาใช้รหัสผ่านที่แข็งแกร่งกว่า");
-      valid = false;
-    }
-
-    if (!confirmPassword.trim()) {
-      setConfirmError("กรุณายืนยันรหัสผ่าน");
-      valid = false;
-    } else if (newPassword !== confirmPassword) {
-      setConfirmError("รหัสผ่านไม่ตรงกัน");
-      valid = false;
-    }
-
+    if (!newPassword.trim()) { setNewError("กรุณาระบุรหัสผ่านใหม่"); valid = false; }
+    else if (passwordStrength < 2) { setNewError("รหัสผ่านอ่อนแอเกินไป กรุณาใช้รหัสผ่านที่แข็งแกร่งกว่า"); valid = false; }
+    if (!confirmPassword.trim()) { setConfirmError("กรุณายืนยันรหัสผ่าน"); valid = false; }
+    else if (newPassword !== confirmPassword) { setConfirmError("รหัสผ่านไม่ตรงกัน"); valid = false; }
     if (!valid) return;
 
     setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 1200));
+    await new Promise((r) => setTimeout(r, 1200));
     setLoading(false);
-    navigate("/ams-ds3", {
-      state: {
-        toast: `เปลี่ยนรหัสผ่านสำเร็จแล้วสำหรับ ${email}`,
-        toastType: "success",
-      },
-    });
+    toast.success(`เปลี่ยนรหัสผ่านสำเร็จแล้วสำหรับ ${email}`);
+    navigate("/ams-ds3", { state: { toast: `เปลี่ยนรหัสผ่านสำเร็จแล้วสำหรับ ${email}`, toastType: "success" } });
   };
+
+  const passwordsMatch = confirmPassword && newPassword && confirmPassword === newPassword;
 
   return (
     <AMSDS3AuthScaffold
       header={<AMSDS3LogoHeader title="ตั้งรหัสผ่านใหม่ของคุณ" />}
     >
-      <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "100%" }}>
-        <FormField
-          name="newPassword"
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-16)", width: "100%" }}>
+        <DSInput
+          fullWidth
           label="ตั้งรหัสผ่านใหม่"
-          error={newError}
+          placeholder="ระบุรหัสผ่านใหม่"
+          showPasswordToggle
+          type="password"
+          inputSize="lg"
+          state={newError ? "error" : "default"}
+          errorMessage={newError}
           helperText="ยังไม่มี DS password-strength component แบบตรงจาก React package จึงคงเฉพาะ validation logic"
-        >
-          <Input
-            fullWidth
-            placeholder="ระบุรหัสผ่านใหม่"
-            showPasswordToggle
-            type="password"
-            value={newPassword}
-            onChange={(event) => {
-              setNewPassword(event.target.value);
-              setNewError("");
-            }}
-          />
-        </FormField>
+          value={newPassword}
+          onChange={(e) => { setNewPassword(e.target.value); setNewError(""); }}
+        />
 
-        <FormField
-          name="confirmPassword"
+        <DSInput
+          fullWidth
           label="ยืนยันรหัสผ่าน"
-          error={confirmError}
-          successMessage={confirmPassword && newPassword && confirmPassword === newPassword ? "รหัสผ่านตรงกัน ✓" : undefined}
-        >
-          <Input
-            fullWidth
-            placeholder="ยืนยันรหัสผ่านใหม่"
-            showPasswordToggle
-            type="password"
-            value={confirmPassword}
-            onChange={(event) => {
-              setConfirmPassword(event.target.value);
-              setConfirmError("");
-            }}
-          />
-        </FormField>
+          placeholder="ยืนยันรหัสผ่านใหม่"
+          showPasswordToggle
+          type="password"
+          inputSize="lg"
+          state={confirmError ? "error" : passwordsMatch ? "success" : "default"}
+          errorMessage={confirmError}
+          successMessage={passwordsMatch ? "รหัสผ่านตรงกัน ✓" : undefined}
+          value={confirmPassword}
+          onChange={(e) => { setConfirmPassword(e.target.value); setConfirmError(""); }}
+        />
 
-        <Button fullWidth size="lg" loading={loading} onClick={handleSubmit} disabled={!canSubmit}>
+        <DSButton fullWidth size="lg" loading={loading} onClick={handleSubmit} disabled={!canSubmit}>
           เปลี่ยนรหัสผ่าน
-        </Button>
+        </DSButton>
       </div>
     </AMSDS3AuthScaffold>
   );

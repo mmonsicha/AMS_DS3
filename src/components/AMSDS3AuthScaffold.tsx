@@ -1,20 +1,40 @@
+/**
+ * AMSDS3AuthScaffold
+ * อัปเดตเป็น DS3 tokens จาก MCP (2026-05-05)
+ *
+ * Typography tokens (MCP DS3):
+ *   --text-h1   48px / 400  → Page title
+ *   --text-h3   28px / 400  → Subtitle / body heading
+ *   --text-p    20px / 400  → Body / helper
+ *
+ * Color tokens (MCP DS3):
+ *   text-primary       → var(--text-primary)
+ *   text-secondary     → var(--text-secondary)
+ *   text-brand-primary → var(--text-brand-primary)  [เปลี่ยนจาก --fg-brand-primary]
+ *   bg-secondary       → var(--bg-secondary)         [เปลี่ยนจาก --bg-disabled]
+ *
+ * Components (DS3 latest):
+ *   Card, CardBody  → import { Card, CardBody } from "@uxuissk/design-system"
+ *
+ * Gap ที่ยังแก้ไม่ได้:
+ *   - SellsukiLogo ยังใช้ custom component (ไม่มี React export ตรงจาก DS package)
+ *   - background images ยังเป็น asset เดิมจาก Figma bundle
+ */
+
 import type { ReactNode } from "react";
-import { Card, FormHelperText } from "@uxuissk/design-system";
+import { Card, CardBody, FormHelperText } from "@uxuissk/design-system";
 import { SellsukiLogo } from "./SellsukiLogo";
 import bgLeft from "../../assets/1419c16c978bd71ca944442ea8b3e61b517a5ce2.png";
 import bgRight from "../../assets/96c4a042eb96bdba14eaccbb00815526b9856ac7.png";
 
-function headerTextStyle(fontFamily: string, fontSize: string, color: string, lineHeight = 1) {
-  return {
-    color,
-    fontFamily,
-    fontSize,
-    lineHeight,
-    margin: 0,
-    textAlign: "center" as const,
-  };
-}
+// ─── Typography constants (DS3 MCP token values) ────────────────────────────
+const FONT_FAMILY = "DB HeaventRounded, sans-serif"; // DS3: Thai-first — ห้ามใช้ Inter
 
+const FS_H1 = "var(--text-h1)"; // 48px — Page titles
+const FS_H3 = "var(--text-h3)"; // 28px — Subtitles
+const FS_P  = "var(--text-p)";  // 20px — Body / helper
+
+// ─── Email icon ──────────────────────────────────────────────────────────────
 export function AMSDS3EmailIcon() {
   return (
     <div style={{ alignItems: "center", display: "flex", height: "120px", justifyContent: "center", width: "120px" }}>
@@ -26,21 +46,56 @@ export function AMSDS3EmailIcon() {
   );
 }
 
+// ─── Text primitives ─────────────────────────────────────────────────────────
+
+/** --text-h1 (48px / 400) — Page titles */
 export function AMSDS3Title({ children }: { children: ReactNode }) {
-  return <h1 style={headerTextStyle("DB_HeaventRounded:Bold, sans-serif", "44px", "var(--text-primary)")}>{children}</h1>;
+  return (
+    <h1
+      style={{
+        color: "var(--text-primary)",
+        fontFamily: FONT_FAMILY,
+        fontSize: FS_H1,
+        fontWeight: 400,
+        lineHeight: 1.1,
+        margin: 0,
+        textAlign: "center",
+      }}
+    >
+      {children}
+    </h1>
+  );
 }
 
+/** --text-h3 (28px / 400) — Subtitles / descriptions */
 export function AMSDS3Subtitle({ children }: { children: ReactNode }) {
-  return <p style={headerTextStyle("DB_HeaventRounded:Regular, sans-serif", "28px", "var(--text-secondary)", 1.2)}>{children}</p>;
+  return (
+    <p
+      style={{
+        color: "var(--text-secondary)",
+        fontFamily: FONT_FAMILY,
+        fontSize: FS_H3,
+        fontWeight: 400,
+        lineHeight: 1.3,
+        margin: 0,
+        textAlign: "center",
+        whiteSpace: "pre-line",
+      }}
+    >
+      {children}
+    </p>
+  );
 }
 
+/** Brand accent inline span — --text-h3 (28px) */
 export function AMSDS3AccentText({ children }: { children: ReactNode }) {
   return (
     <span
       style={{
-        color: "var(--fg-brand-primary)",
-        fontFamily: "DB_HeaventRounded:Med, sans-serif",
-        fontSize: "28px",
+        color: "var(--text-brand-primary)", // DS3: Sky-500
+        fontFamily: FONT_FAMILY,
+        fontSize: FS_H3,
+        fontWeight: 500,
       }}
     >
       {children}
@@ -48,10 +103,11 @@ export function AMSDS3AccentText({ children }: { children: ReactNode }) {
   );
 }
 
+/** Link-style button — --text-p (20px) by default */
 export function AMSDS3LinkButton({
   children,
   onClick,
-  size = "20px",
+  size,
 }: {
   children: ReactNode;
   onClick: () => void;
@@ -63,11 +119,14 @@ export function AMSDS3LinkButton({
       style={{
         background: "transparent",
         border: 0,
-        color: "var(--fg-brand-primary)",
+        color: "var(--text-brand-primary)", // DS3: Sky-500
         cursor: "pointer",
-        fontFamily: "DB_HeaventRounded:Med, sans-serif",
-        fontSize: size,
+        fontFamily: FONT_FAMILY,
+        fontSize: size ?? FS_P,
+        fontWeight: 500,
         padding: 0,
+        textDecoration: "underline",
+        textUnderlineOffset: "2px",
       }}
       type="button"
     >
@@ -76,6 +135,7 @@ export function AMSDS3LinkButton({
   );
 }
 
+// ─── Page scaffold ────────────────────────────────────────────────────────────
 export function AMSDS3AuthScaffold({
   children,
   footer,
@@ -88,7 +148,7 @@ export function AMSDS3AuthScaffold({
   return (
     <div
       style={{
-        background: "var(--bg-disabled)",
+        background: "var(--bg-secondary)", // DS3: Gray-100 (#f3f4f6)
         minHeight: "100vh",
         overflow: "hidden",
         position: "relative",
@@ -97,7 +157,6 @@ export function AMSDS3AuthScaffold({
       <div style={{ bottom: 0, height: "400px", left: 0, pointerEvents: "none", position: "absolute", width: "400px" }}>
         <img alt="" src={bgLeft} style={{ height: "100%", objectFit: "contain", objectPosition: "bottom left", width: "100%" }} />
       </div>
-
       <div style={{ bottom: 0, height: "400px", pointerEvents: "none", position: "absolute", right: 0, width: "400px" }}>
         <img alt="" src={bgRight} style={{ height: "100%", objectFit: "contain", objectPosition: "bottom right", width: "100%" }} />
       </div>
@@ -107,19 +166,23 @@ export function AMSDS3AuthScaffold({
           alignItems: "center",
           display: "flex",
           flexDirection: "column",
-          gap: "32px",
+          gap: "var(--space-32)",
           justifyContent: "center",
           minHeight: "100vh",
-          padding: "48px 16px",
+          padding: "var(--space-48) var(--space-16)",
           position: "relative",
           zIndex: 1,
         }}
       >
-        <Card className="w-full max-w-[440px] p-[40px]">
-          <div style={{ alignItems: "center", display: "flex", flexDirection: "column", gap: "32px", width: "100%" }}>
-            <div style={{ alignItems: "center", display: "flex", flexDirection: "column", gap: "8px", width: "100%" }}>{header}</div>
-            {children}
-          </div>
+        <Card className="w-full max-w-[440px]">
+          <CardBody style={{ padding: "var(--space-40)" }}>
+            <div style={{ alignItems: "center", display: "flex", flexDirection: "column", gap: "var(--space-32)", width: "100%" }}>
+              <div style={{ alignItems: "center", display: "flex", flexDirection: "column", gap: "var(--space-8)", width: "100%" }}>
+                {header}
+              </div>
+              {children}
+            </div>
+          </CardBody>
         </Card>
 
         {footer && <div style={{ maxWidth: "440px", width: "100%" }}>{footer}</div>}
@@ -128,6 +191,7 @@ export function AMSDS3AuthScaffold({
   );
 }
 
+// ─── Logo header ──────────────────────────────────────────────────────────────
 export function AMSDS3LogoHeader({ title, subtitle }: { subtitle?: ReactNode; title: ReactNode }) {
   return (
     <>
@@ -138,6 +202,18 @@ export function AMSDS3LogoHeader({ title, subtitle }: { subtitle?: ReactNode; ti
   );
 }
 
+// ─── Legal footer ─────────────────────────────────────────────────────────────
 export function AMSDS3LegalFooter({ children }: { children: ReactNode }) {
-  return <FormHelperText className="text-center text-[20px] leading-snug">{children}</FormHelperText>;
+  return (
+    <FormHelperText
+      style={{
+        fontFamily: FONT_FAMILY,
+        fontSize: FS_P,
+        lineHeight: 1.5,
+        textAlign: "center",
+      }}
+    >
+      {children}
+    </FormHelperText>
+  );
 }

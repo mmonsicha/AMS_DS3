@@ -1,5 +1,9 @@
+/**
+ * AMS_DS3_ForgotPasswordCheckEmail
+ * DS3: DSButton
+ */
 import { useLocation, useNavigate } from "react-router";
-import { Button } from "@uxuissk/design-system";
+import { DSButton } from "@uxuissk/design-system";
 import {
   AMSDS3AuthScaffold,
   AMSDS3EmailIcon,
@@ -25,18 +29,18 @@ export default function AMS_DS3_ForgotPasswordCheckEmail() {
         </>
       }
     >
-      <div style={{ display: "flex", flexDirection: "column", gap: "12px", width: "100%" }}>
-        <Button fullWidth size="lg" onClick={() => navigate("/ams-ds3/forgot-password/create-password", { state: { email } })}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-12)", width: "100%" }}>
+        <DSButton fullWidth size="lg" onClick={() => navigate("/ams-ds3/forgot-password/create-password", { state: { email } })}>
           จำลอง: คลิกลิงก์ในอีเมล
-        </Button>
+        </DSButton>
 
-        <Button fullWidth size="lg" variant="secondary" onClick={() => navigate("/ams-ds3/forgot-password/link-expired")}>
+        <DSButton fullWidth size="lg" variant="secondary" onClick={() => navigate("/ams-ds3/forgot-password/link-expired")}>
           จำลอง: ลิงก์หมดอายุ
-        </Button>
+        </DSButton>
 
-        <Button fullWidth size="lg" variant="ghost" onClick={() => navigate("/ams-ds3")}>
+        <DSButton fullWidth size="lg" variant="ghost" onClick={() => navigate("/ams-ds3")}>
           กลับไปเข้าสู่ระบบ
-        </Button>
+        </DSButton>
       </div>
     </AMSDS3AuthScaffold>
   );

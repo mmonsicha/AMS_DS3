@@ -1,6 +1,10 @@
+/**
+ * AMS_DS3_ForgotPassword
+ * DS3: DSButton, DSInput
+ */
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { Button, FormField, Input } from "@uxuissk/design-system";
+import { DSButton, DSInput } from "@uxuissk/design-system";
 import {
   AMSDS3AuthScaffold,
   AMSDS3LogoHeader,
@@ -15,56 +19,42 @@ export default function AMS_DS3_ForgotPassword() {
   const [emailError, setEmailError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  const isValidEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
   const handleSubmit = async () => {
-    if (!email.trim()) {
-      setEmailError("กรุณาระบุอีเมล");
-      return;
-    }
-
-    if (!isValidEmail(email)) {
-      setEmailError("รูปแบบอีเมลไม่ถูกต้อง");
-      return;
-    }
-
+    if (!email.trim()) { setEmailError("กรุณาระบุอีเมล"); return; }
+    if (!isValidEmail(email)) { setEmailError("รูปแบบอีเมลไม่ถูกต้อง"); return; }
     setEmailError("");
     setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 1200));
+    await new Promise((r) => setTimeout(r, 1200));
     setLoading(false);
     navigate("/ams-ds3/forgot-password/check-email", { state: { email } });
   };
 
   return (
     <AMSDS3AuthScaffold
-      header={
-        <AMSDS3LogoHeader
-          title="ลืมรหัสผ่าน"
-          subtitle="กรอกอีเมลเพื่อรับลิงก์รีเซ็ตรหัสผ่าน"
-        />
-      }
+      header={<AMSDS3LogoHeader title="ลืมรหัสผ่าน" subtitle="กรอกอีเมลเพื่อรับลิงก์รีเซ็ตรหัสผ่าน" />}
     >
-      <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "100%" }}>
-        <FormField name="email" label="อีเมล" error={emailError}>
-          <Input
-            fullWidth
-            placeholder="ระบุอีเมล"
-            type="email"
-            value={email}
-            onChange={(event) => {
-              setEmail(event.target.value);
-              setEmailError("");
-            }}
-          />
-        </FormField>
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-16)", width: "100%" }}>
+        <DSInput
+          fullWidth
+          label="อีเมล"
+          placeholder="ระบุอีเมล"
+          type="email"
+          inputSize="lg"
+          state={emailError ? "error" : "default"}
+          errorMessage={emailError}
+          value={email}
+          onChange={(e) => { setEmail(e.target.value); setEmailError(""); }}
+        />
 
-        <Button fullWidth size="lg" loading={loading} onClick={handleSubmit} disabled={!email.trim()}>
+        <DSButton fullWidth size="lg" loading={loading} onClick={handleSubmit} disabled={!email.trim()}>
           ส่งลิงก์รีเซ็ตรหัสผ่าน
-        </Button>
+        </DSButton>
 
-        <Button fullWidth size="lg" variant="ghost" onClick={() => navigate("/ams-ds3")}>
+        <DSButton fullWidth size="lg" variant="ghost" onClick={() => navigate("/ams-ds3")}>
           กลับไปเข้าสู่ระบบ
-        </Button>
+        </DSButton>
       </div>
     </AMSDS3AuthScaffold>
   );

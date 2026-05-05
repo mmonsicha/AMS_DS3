@@ -1,5 +1,9 @@
+/**
+ * AMS_DS3_LinkExpired
+ * DS3: DSButton
+ */
 import { useNavigate } from "react-router";
-import { Button } from "@uxuissk/design-system";
+import { DSButton } from "@uxuissk/design-system";
 import {
   AMSDS3AuthScaffold,
   AMSDS3Subtitle,
@@ -10,8 +14,8 @@ function ExpiredIcon() {
   return (
     <div style={{ alignItems: "center", display: "flex", height: "120px", justifyContent: "center", width: "120px" }}>
       <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" stroke="#ef4444" strokeWidth="1.5" />
-        <path d="M12 8v4m0 4h.01" stroke="#ef4444" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="12" cy="12" r="10" stroke="#e11d48" strokeWidth="1.5" />
+        <path d="M12 8v4m0 4h.01" stroke="#e11d48" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     </div>
   );
@@ -30,13 +34,13 @@ export default function AMS_DS3_LinkExpired() {
         </>
       }
     >
-      <div style={{ display: "flex", flexDirection: "column", gap: "12px", width: "100%" }}>
-        <Button fullWidth size="lg" onClick={() => navigate("/ams-ds3/forgot-password")}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-12)", width: "100%" }}>
+        <DSButton fullWidth size="lg" onClick={() => navigate("/ams-ds3/forgot-password")}>
           ขอลิงก์ใหม่
-        </Button>
-        <Button fullWidth size="lg" variant="ghost" onClick={() => navigate("/ams-ds3")}>
+        </DSButton>
+        <DSButton fullWidth size="lg" variant="ghost" onClick={() => navigate("/ams-ds3")}>
           กลับไปเข้าสู่ระบบ
-        </Button>
+        </DSButton>
       </div>
     </AMSDS3AuthScaffold>
   );

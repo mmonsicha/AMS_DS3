@@ -1,7 +1,10 @@
+/**
+ * AMS_DS3_SignUp
+ * DS3: DSButton, DSInput, DSCheckbox, Divider, toast
+ */
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { Button, Checkbox, Divider, FormField, FormHelperText, Input } from "@uxuissk/design-system";
-import { toast } from "../components/ToastProvider";
+import { DSButton, DSCheckbox, DSInput, Divider, toast } from "@uxuissk/design-system";
 import {
   AMSDS3AuthScaffold,
   AMSDS3LegalFooter,
@@ -15,20 +18,12 @@ export default function AMS_DS3_SignUp() {
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [emailError, setEmailError] = useState("");
 
-  const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  const isValidEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
   const canProceed = email.trim() && termsAccepted;
 
   const handleNext = () => {
-    if (!email.trim()) {
-      setEmailError("กรุณาระบุอีเมล");
-      return;
-    }
-
-    if (!isValidEmail(email)) {
-      setEmailError("รูปแบบอีเมลไม่ถูกต้อง");
-      return;
-    }
-
+    if (!email.trim()) { setEmailError("กรุณาระบุอีเมล"); return; }
+    if (!isValidEmail(email)) { setEmailError("รูปแบบอีเมลไม่ถูกต้อง"); return; }
     setEmailError("");
     navigate("/ams-ds3/signup/register", { state: { email } });
   };
@@ -48,50 +43,42 @@ export default function AMS_DS3_SignUp() {
         </AMSDS3LegalFooter>
       }
     >
-      <div style={{ display: "flex", flexDirection: "column", gap: "24px", width: "100%" }}>
-        <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "100%" }}>
-          <FormField name="email" label="อีเมล" error={emailError}>
-            <Input
-              fullWidth
-              placeholder="ระบุอีเมล"
-              type="email"
-              value={email}
-              onChange={(event) => {
-                setEmail(event.target.value);
-                setEmailError("");
-              }}
-            />
-          </FormField>
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-24)", width: "100%" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-16)", width: "100%" }}>
+          <DSInput
+            fullWidth
+            label="อีเมล"
+            placeholder="ระบุอีเมล"
+            type="email"
+            inputSize="lg"
+            state={emailError ? "error" : "default"}
+            errorMessage={emailError}
+            value={email}
+            onChange={(e) => { setEmail(e.target.value); setEmailError(""); }}
+          />
 
-          <Checkbox
+          <DSCheckbox
             checked={termsAccepted}
             onChange={setTermsAccepted}
             label="ยอมรับเงื่อนไขข้อตกลงและนโยบายความเป็นส่วนตัว"
+            size="md"
           />
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "100%" }}>
-            <Button fullWidth size="lg" onClick={handleNext} disabled={!canProceed}>
-              ต่อไป
-            </Button>
-
-            <FormHelperText className="text-center text-[20px]">
-              คุณมีบัญชีผู้ใช้งานแล้ว? <AMSDS3LinkButton onClick={() => navigate("/ams-ds3")}>เข้าสู่ระบบเลย</AMSDS3LinkButton>
-            </FormHelperText>
+          <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-16)", width: "100%" }}>
+            <DSButton fullWidth size="lg" onClick={handleNext} disabled={!canProceed}>ต่อไป</DSButton>
+            <p style={{ fontFamily: "DB HeaventRounded, sans-serif", fontSize: "var(--text-p)", margin: 0, textAlign: "center", color: "var(--text-secondary)" }}>
+              คุณมีบัญชีผู้ใช้งานแล้ว?{" "}
+              <AMSDS3LinkButton onClick={() => navigate("/ams-ds3")}>เข้าสู่ระบบเลย</AMSDS3LinkButton>
+            </p>
           </div>
         </div>
 
         <Divider label="หรือ" />
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "100%" }}>
-          <Button fullWidth size="lg" variant="outline" onClick={() => handleSocialSignup("Google")}>
-            สมัครสมาชิกด้วยบัญชี Google
-          </Button>
-          <Button fullWidth size="lg" variant="outline" onClick={() => handleSocialSignup("Facebook")}>
-            สมัครสมาชิกด้วยบัญชี Facebook
-          </Button>
-          <Button fullWidth size="lg" variant="outline" onClick={() => handleSocialSignup("LINE")}>
-            สมัครสมาชิกด้วยบัญชี LINE
-          </Button>
+        <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-16)", width: "100%" }}>
+          <DSButton fullWidth size="lg" variant="outline" onClick={() => handleSocialSignup("Google")}>สมัครสมาชิกด้วยบัญชี Google</DSButton>
+          <DSButton fullWidth size="lg" variant="outline" onClick={() => handleSocialSignup("Facebook")}>สมัครสมาชิกด้วยบัญชี Facebook</DSButton>
+          <DSButton fullWidth size="lg" variant="outline" onClick={() => handleSocialSignup("LINE")}>สมัครสมาชิกด้วยบัญชี LINE</DSButton>
         </div>
       </div>
     </AMSDS3AuthScaffold>
