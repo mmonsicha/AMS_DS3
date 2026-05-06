@@ -32,6 +32,7 @@ export default function AMS_DS3_SignUp() {
       }
     >
       <div style={{ display: "flex", flexDirection: "column", gap: "24px", width: "100%" }}>
+        {/* Form section: input + checkbox + button — gap 16px ระหว่าง field */}
         <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "100%" }}>
           <DSInput
             fullWidth label="อีเมล" placeholder="ระบุอีเมล" type="email" inputSize="lg"
@@ -39,15 +40,24 @@ export default function AMS_DS3_SignUp() {
             value={email}
             onChange={(e) => { setEmail(e.target.value); setEmailError(""); }}
           />
-          <DSCheckbox checked={termsAccepted} onChange={setTermsAccepted} size="md"
-            label="ยอมรับเงื่อนไขข้อตกลงและนโยบายความเป็นส่วนตัว" />
-          <DSButton fullWidth size="lg" onClick={handleNext} disabled={!canProceed}>ต่อไป</DSButton>
-          <p style={{ color: "#6B7280", fontFamily: "DB HeaventRounded, sans-serif", fontSize: "16px", margin: 0, textAlign: "center" }}>
-            คุณมีบัญชีผู้ใช้งานแล้ว?{" "}
-            <AMSDS3LinkButton onClick={() => navigate("/ams-ds3")}>เข้าสู่ระบบเลย</AMSDS3LinkButton>
-          </p>
+          <DSCheckbox
+            checked={termsAccepted}
+            onChange={setTermsAccepted}
+            size="md"
+            label="ยอมรับเงื่อนไขข้อตกลงและนโยบายความเป็นส่วนตัว"
+          />
+          {/* gap 24px ระหว่าง checkbox กับ action buttons */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginTop: "8px", width: "100%" }}>
+            <DSButton fullWidth size="lg" onClick={handleNext} disabled={!canProceed}>ต่อไป</DSButton>
+            <p style={{ color: "#6B7280", fontFamily: "DB HeaventRounded, sans-serif", fontSize: "16px", margin: 0, textAlign: "center" }}>
+              คุณมีบัญชีผู้ใช้งานแล้ว?{" "}
+              <AMSDS3LinkButton onClick={() => navigate("/ams-ds3")}>เข้าสู่ระบบเลย</AMSDS3LinkButton>
+            </p>
+          </div>
         </div>
+
         <Divider label="หรือ" />
+
         <div style={{ display: "flex", flexDirection: "column", gap: "12px", width: "100%" }}>
           <DSButton fullWidth size="lg" variant="outline" onClick={() => toast.info("Google signup — coming soon")}>
             <span className="ams-social-btn"><GoogleIcon />สมัครสมาชิกด้วยบัญชี Google</span>

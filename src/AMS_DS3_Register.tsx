@@ -51,7 +51,7 @@ export default function AMS_DS3_Register() {
         </>
       }
     >
-      <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-16)", width: "100%" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "100%" }}>
         <DSInput
           fullWidth label="ชื่อ" placeholder="ระบุชื่อ" inputSize="lg"
           state={firstNameError ? "error" : "default"} errorMessage={firstNameError}

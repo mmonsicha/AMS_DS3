@@ -29,7 +29,7 @@ export default function AMS_DS3_LinkExpired() {
         </>
       }
     >
-      <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-12)", width: "100%" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "12px", width: "100%" }}>
         <DSButton fullWidth size="lg" onClick={() => navigate("/ams-ds3/forgot-password")}>ขอลิงก์ใหม่</DSButton>
         <DSButton fullWidth size="lg" variant="ghost" onClick={() => navigate("/ams-ds3")}>กลับไปเข้าสู่ระบบ</DSButton>
       </div>

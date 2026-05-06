@@ -5,8 +5,6 @@
 import type { CSSProperties, ReactNode } from "react";
 import { Card, CardBody, DSButton, FormHelperText, ToastContainer } from "@uxuissk/design-system";
 import { SellsukiLogo } from "./SellsukiLogo";
-import bgLeft from "../assets/1419c16c978bd71ca944442ea8b3e61b517a5ce2.png";
-import bgRight from "../assets/96c4a042eb96bdba14eaccbb00815526b9856ac7.png";
 
 const FONT = "DB HeaventRounded, sans-serif";
 
@@ -91,22 +89,6 @@ export function AMSDS3AuthScaffold({
     }}>
       {/* DS3 ToastContainer */}
       <ToastContainer />
-
-      {/* Bg left */}
-      <div style={{
-        bottom: 0, height: "400px", left: 0,
-        pointerEvents: "none", position: "fixed", width: "400px", zIndex: 0,
-      }}>
-        <img alt="" src={bgLeft} style={{ height: "100%", objectFit: "cover", objectPosition: "bottom left", width: "100%" }} />
-      </div>
-
-      {/* Bg right */}
-      <div style={{
-        bottom: 0, height: "400px",
-        pointerEvents: "none", position: "fixed", right: 0, width: "400px", zIndex: 0,
-      }}>
-        <img alt="" src={bgRight} style={{ height: "100%", objectFit: "cover", objectPosition: "bottom right", width: "100%" }} />
-      </div>
 
       {/* Center container */}
       <div style={{
