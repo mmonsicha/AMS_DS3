@@ -1,0 +1,15 @@
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; }
+
+/* AMS DS3 overrides */
+.ams-legal-footer {
+  font-family: "DB HeaventRounded", sans-serif !important;
+  font-size: var(--text-p) !important;
+  line-height: 1.5 !important;
+  text-align: center !important;
+}
+
+/* Card body padding for auth scaffold */
+.w-full.max-w-\[440px\] > div {
+  padding: var(--space-40, 40px);
+}
