@@ -1,17 +1,8 @@
-/**
- * AMS_DS3_SignUp
- * DS3: DSButton, DSInput, DSCheckbox, Divider, toast
- * Gap #1: Social auth buttons → DSButton outline fallback
- */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DSButton, DSCheckbox, DSInput, Divider, toast } from "@uxuissk/design-system";
-import {
-  AMSDS3AuthScaffold,
-  AMSDS3LegalFooter,
-  AMSDS3LinkButton,
-  AMSDS3LogoHeader,
-} from "./components/AMSDS3AuthScaffold";
+import { AMSDS3AuthScaffold, AMSDS3LegalFooter, AMSDS3LinkButton, AMSDS3LogoHeader } from "./components/AMSDS3AuthScaffold";
+import { FacebookIcon, GoogleIcon, LineIcon } from "./components/SocialIcons";
 
 export default function AMS_DS3_SignUp() {
   const navigate = useNavigate();
@@ -29,10 +20,6 @@ export default function AMS_DS3_SignUp() {
     navigate("/ams-ds3/signup/register", { state: { email } });
   };
 
-  const handleSocialSignup = (provider: "Google" | "Facebook" | "LINE") => {
-    toast.info(`[Gap #1] ยังไม่มี SocialButton component ใน DS3 สำหรับ ${provider}`);
-  };
-
   return (
     <AMSDS3AuthScaffold
       header={<AMSDS3LogoHeader title="สมัครสมาชิก Sellsuki" subtitle="สมัครสมาชิกเพื่อเข้าใช้งาน" />}
@@ -44,42 +31,33 @@ export default function AMS_DS3_SignUp() {
         </AMSDS3LegalFooter>
       }
     >
-      <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-24)", width: "100%" }}>
-        <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-16)", width: "100%" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "24px", width: "100%" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "100%" }}>
           <DSInput
-            fullWidth
-            label="อีเมล"
-            placeholder="ระบุอีเมล"
-            type="email"
-            inputSize="lg"
-            state={emailError ? "error" : "default"}
-            errorMessage={emailError}
+            fullWidth label="อีเมล" placeholder="ระบุอีเมล" type="email" inputSize="lg"
+            state={emailError ? "error" : "default"} errorMessage={emailError}
             value={email}
             onChange={(e) => { setEmail(e.target.value); setEmailError(""); }}
           />
-
-          <DSCheckbox
-            checked={termsAccepted}
-            onChange={setTermsAccepted}
-            label="ยอมรับเงื่อนไขข้อตกลงและนโยบายความเป็นส่วนตัว"
-            size="md"
-          />
-
+          <DSCheckbox checked={termsAccepted} onChange={setTermsAccepted} size="md"
+            label="ยอมรับเงื่อนไขข้อตกลงและนโยบายความเป็นส่วนตัว" />
           <DSButton fullWidth size="lg" onClick={handleNext} disabled={!canProceed}>ต่อไป</DSButton>
-
-          <p style={{ color: "var(--text-secondary)", fontFamily: "DB HeaventRounded, sans-serif", fontSize: "var(--text-p)", margin: 0, textAlign: "center" }}>
+          <p style={{ color: "#6B7280", fontFamily: "DB HeaventRounded, sans-serif", fontSize: "16px", margin: 0, textAlign: "center" }}>
             คุณมีบัญชีผู้ใช้งานแล้ว?{" "}
             <AMSDS3LinkButton onClick={() => navigate("/ams-ds3")}>เข้าสู่ระบบเลย</AMSDS3LinkButton>
           </p>
         </div>
-
         <Divider label="หรือ" />
-
-        {/* Gap #1: Social buttons — DSButton outline fallback */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-16)", width: "100%" }}>
-          <DSButton fullWidth size="lg" variant="outline" onClick={() => handleSocialSignup("Google")}>สมัครสมาชิกด้วยบัญชี Google</DSButton>
-          <DSButton fullWidth size="lg" variant="outline" onClick={() => handleSocialSignup("Facebook")}>สมัครสมาชิกด้วยบัญชี Facebook</DSButton>
-          <DSButton fullWidth size="lg" variant="outline" onClick={() => handleSocialSignup("LINE")}>สมัครสมาชิกด้วยบัญชี LINE</DSButton>
+        <div style={{ display: "flex", flexDirection: "column", gap: "12px", width: "100%" }}>
+          <DSButton fullWidth size="lg" variant="outline" onClick={() => toast.info("Google signup — coming soon")}>
+            <span className="ams-social-btn"><GoogleIcon />สมัครสมาชิกด้วยบัญชี Google</span>
+          </DSButton>
+          <DSButton fullWidth size="lg" variant="outline" onClick={() => toast.info("Facebook signup — coming soon")}>
+            <span className="ams-social-btn"><FacebookIcon />สมัครสมาชิกด้วยบัญชี Facebook</span>
+          </DSButton>
+          <DSButton fullWidth size="lg" variant="outline" onClick={() => toast.info("LINE signup — coming soon")}>
+            <span className="ams-social-btn"><LineIcon />สมัครสมาชิกด้วยบัญชี LINE</span>
+          </DSButton>
         </div>
       </div>
     </AMSDS3AuthScaffold>

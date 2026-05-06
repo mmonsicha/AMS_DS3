@@ -1,15 +1,19 @@
 *, *::before, *::after { box-sizing: border-box; }
-body { margin: 0; }
+body { margin: 0; font-family: "DB HeaventRounded", sans-serif; }
 
-/* AMS DS3 overrides */
+/* DS3 FormHelperText legal footer */
 .ams-legal-footer {
   font-family: "DB HeaventRounded", sans-serif !important;
-  font-size: var(--text-p) !important;
-  line-height: 1.5 !important;
+  font-size: 16px !important;
+  line-height: 1.6 !important;
   text-align: center !important;
+  color: #6B7280 !important;
 }
 
-/* Card body padding for auth scaffold */
-.w-full.max-w-\[440px\] > div {
-  padding: var(--space-40, 40px);
+/* Social button icon spacing */
+.ams-social-btn {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
 }
