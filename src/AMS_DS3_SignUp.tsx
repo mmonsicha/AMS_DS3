@@ -1,6 +1,7 @@
 /**
  * AMS_DS3_SignUp
  * DS3: DSButton, DSInput, DSCheckbox, Divider, toast
+ * Gap #1: Social auth buttons → DSButton outline fallback
  */
 import { useState } from "react";
 import { useNavigate } from "react-router";
@@ -29,7 +30,7 @@ export default function AMS_DS3_SignUp() {
   };
 
   const handleSocialSignup = (provider: "Google" | "Facebook" | "LINE") => {
-    toast.info(`ยังไม่มี DS component สำหรับ social auth button ของ ${provider} ใน React package ปัจจุบัน`);
+    toast.info(`[Gap #1] ยังไม่มี SocialButton component ใน DS3 สำหรับ ${provider}`);
   };
 
   return (
@@ -64,17 +65,17 @@ export default function AMS_DS3_SignUp() {
             size="md"
           />
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-16)", width: "100%" }}>
-            <DSButton fullWidth size="lg" onClick={handleNext} disabled={!canProceed}>ต่อไป</DSButton>
-            <p style={{ fontFamily: "DB HeaventRounded, sans-serif", fontSize: "var(--text-p)", margin: 0, textAlign: "center", color: "var(--text-secondary)" }}>
-              คุณมีบัญชีผู้ใช้งานแล้ว?{" "}
-              <AMSDS3LinkButton onClick={() => navigate("/ams-ds3")}>เข้าสู่ระบบเลย</AMSDS3LinkButton>
-            </p>
-          </div>
+          <DSButton fullWidth size="lg" onClick={handleNext} disabled={!canProceed}>ต่อไป</DSButton>
+
+          <p style={{ color: "var(--text-secondary)", fontFamily: "DB HeaventRounded, sans-serif", fontSize: "var(--text-p)", margin: 0, textAlign: "center" }}>
+            คุณมีบัญชีผู้ใช้งานแล้ว?{" "}
+            <AMSDS3LinkButton onClick={() => navigate("/ams-ds3")}>เข้าสู่ระบบเลย</AMSDS3LinkButton>
+          </p>
         </div>
 
         <Divider label="หรือ" />
 
+        {/* Gap #1: Social buttons — DSButton outline fallback */}
         <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-16)", width: "100%" }}>
           <DSButton fullWidth size="lg" variant="outline" onClick={() => handleSocialSignup("Google")}>สมัครสมาชิกด้วยบัญชี Google</DSButton>
           <DSButton fullWidth size="lg" variant="outline" onClick={() => handleSocialSignup("Facebook")}>สมัครสมาชิกด้วยบัญชี Facebook</DSButton>

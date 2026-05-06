@@ -1,6 +1,6 @@
 /**
  * AMS_DS3_Register
- * DS3: DSButton, DSInput, FormField
+ * DS3: DSButton, DSInput
  */
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
@@ -31,7 +31,6 @@ export default function AMS_DS3_Register() {
     if (!firstName.trim()) { setFirstNameError("กรุณาระบุชื่อ"); valid = false; }
     if (!lastName.trim()) { setLastNameError("กรุณาระบุนามสกุล"); valid = false; }
     if (!valid) return;
-
     setLoading(true);
     await new Promise((r) => setTimeout(r, 1200));
     setLoading(false);
@@ -54,34 +53,23 @@ export default function AMS_DS3_Register() {
     >
       <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-16)", width: "100%" }}>
         <DSInput
-          fullWidth
-          label="ชื่อ"
-          placeholder="ระบุชื่อ"
-          inputSize="lg"
-          state={firstNameError ? "error" : "default"}
-          errorMessage={firstNameError}
+          fullWidth label="ชื่อ" placeholder="ระบุชื่อ" inputSize="lg"
+          state={firstNameError ? "error" : "default"} errorMessage={firstNameError}
           value={firstName}
           onChange={(e) => { setFirstName(e.target.value); setFirstNameError(""); }}
         />
-
         <DSInput
-          fullWidth
-          label="นามสกุล"
-          placeholder="ระบุนามสกุล"
-          inputSize="lg"
-          state={lastNameError ? "error" : "default"}
-          errorMessage={lastNameError}
+          fullWidth label="นามสกุล" placeholder="ระบุนามสกุล" inputSize="lg"
+          state={lastNameError ? "error" : "default"} errorMessage={lastNameError}
           value={lastName}
           onChange={(e) => { setLastName(e.target.value); setLastNameError(""); }}
         />
-
         <DSButton fullWidth size="lg" loading={loading} onClick={handleRegister} disabled={!canProceed}>
           ต่อไป
         </DSButton>
-
-        <p style={{ fontFamily: "DB HeaventRounded, sans-serif", fontSize: "var(--text-p)", margin: 0, textAlign: "center" }}>
+        <div style={{ textAlign: "center" }}>
           <AMSDS3LinkButton onClick={() => navigate("/ams-ds3/signup")}>← กลับ</AMSDS3LinkButton>
-        </p>
+        </div>
       </div>
     </AMSDS3AuthScaffold>
   );

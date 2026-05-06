@@ -1,7 +1,17 @@
 /**
  * AMS_DS3 — Sign In
- * DS3 components: DSButton, DSInput, FormField, Divider, ToastContainer/toast
- * DS3 tokens: font-family, --text-p, --text-h3, --text-primary, --text-brand-primary
+ *
+ * DS3 Components (MCP DS3 ครบถ้วน):
+ *   DSButton, DSInput, Divider, toast
+ *   ToastContainer → อยู่ใน AMSDS3AuthScaffold แล้ว
+ *
+ * DS3 Tokens:
+ *   --text-h4, --text-p, --text-primary, --text-brand-primary
+ *   --space-4, --space-16, --space-24
+ *
+ * Known Gap:
+ *   Social auth buttons (Google/Facebook/LINE) — ไม่มี DS3 SocialButton component
+ *   → ใช้ DSButton variant="outline" เป็น fallback + เขียน GitHub Issue แนบ
  */
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
@@ -13,7 +23,7 @@ import {
   AMSDS3LogoHeader,
 } from "../components/AMSDS3AuthScaffold";
 
-const FONT_FAMILY = "DB HeaventRounded, sans-serif";
+const FONT = "DB HeaventRounded, sans-serif";
 
 export default function AMS_DS3() {
   const navigate = useNavigate();
@@ -34,7 +44,7 @@ export default function AMS_DS3() {
     window.history.replaceState({}, "");
   }, [location.state]);
 
-  const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  const isValidEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
   const handleEmailNext = () => {
     if (!email.trim()) { setEmailError("กรุณาระบุอีเมล"); return; }
@@ -52,8 +62,9 @@ export default function AMS_DS3() {
     navigate("/dashboard");
   };
 
+  // Gap: ไม่มี DS3 SocialButton — ใช้ DSButton outline fallback
   const handleSocialLogin = (provider: "Google" | "Facebook" | "LINE") => {
-    toast.info(`ยังไม่มี DS component สำหรับ social auth button ของ ${provider} ใน React package ปัจจุบัน`);
+    toast.info(`[Gap #1] ยังไม่มี SocialButton component ใน DS3 สำหรับ ${provider}`);
   };
 
   return (
@@ -75,7 +86,6 @@ export default function AMS_DS3() {
       <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-24)", width: "100%" }}>
         {step === "email" ? (
           <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-16)", width: "100%" }}>
-            {/* DS3: DSInput handles label + error internally */}
             <DSInput
               fullWidth
               label="อีเมล"
@@ -88,19 +98,20 @@ export default function AMS_DS3() {
               onChange={(e) => { setEmail(e.target.value); setEmailError(""); }}
             />
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-16)", width: "100%" }}>
-              <DSButton fullWidth size="lg" onClick={handleEmailNext} disabled={!email.trim()}>
-                ต่อไป
-              </DSButton>
+            <DSButton fullWidth size="lg" onClick={handleEmailNext} disabled={!email.trim()}>
+              ต่อไป
+            </DSButton>
 
-              <p style={{ fontFamily: "DB HeaventRounded, sans-serif", fontSize: "var(--text-p)", margin: 0, textAlign: "center", color: "var(--text-secondary)" }}>
-                ยังไม่มีบัญชีเข้าใช้งาน?{" "}
-                <AMSDS3LinkButton onClick={() => navigate("/ams-ds3/signup")}>สมัครบัญชีผู้ใช้ใหม่ที่นี่</AMSDS3LinkButton>
-              </p>
-            </div>
+            <FormHelperText>
+              ยังไม่มีบัญชีเข้าใช้งาน?{" "}
+              <AMSDS3LinkButton onClick={() => navigate("/ams-ds3/signup")}>
+                สมัครบัญชีผู้ใช้ใหม่ที่นี่
+              </AMSDS3LinkButton>
+            </FormHelperText>
 
             <Divider label="หรือ" />
 
+            {/* Gap #1: Social buttons — DSButton outline fallback */}
             <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-16)", width: "100%" }}>
               <DSButton fullWidth size="lg" variant="outline" onClick={() => handleSocialLogin("Google")}>เข้าใช้งานด้วยบัญชี Google</DSButton>
               <DSButton fullWidth size="lg" variant="outline" onClick={() => handleSocialLogin("Facebook")}>เข้าใช้งานด้วยบัญชี Facebook</DSButton>
@@ -110,7 +121,7 @@ export default function AMS_DS3() {
         ) : (
           <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-16)", width: "100%" }}>
             <div style={{ alignItems: "center", display: "flex", justifyContent: "space-between", marginBottom: "var(--space-4)" }}>
-              <span style={{ color: "var(--text-primary)", fontFamily: FONT_FAMILY, fontSize: "var(--text-h4)", lineHeight: 1 }}>
+              <span style={{ color: "var(--text-primary)", fontFamily: FONT, fontSize: "var(--text-h4)", lineHeight: 1 }}>
                 รหัสผ่าน
               </span>
               <AMSDS3LinkButton onClick={() => navigate("/ams-ds3/forgot-password", { state: { email } })}>
@@ -134,17 +145,21 @@ export default function AMS_DS3() {
               เข้าสู่ระบบ
             </DSButton>
 
-            <DSButton
-              fullWidth
-              size="lg"
-              variant="ghost"
-              onClick={() => { setStep("email"); setPassword(""); setPasswordError(""); }}
-            >
+            <DSButton fullWidth size="lg" variant="ghost" onClick={() => { setStep("email"); setPassword(""); setPasswordError(""); }}>
               กลับ
             </DSButton>
           </div>
         )}
       </div>
     </AMSDS3AuthScaffold>
+  );
+}
+
+// DS3 FormHelperText ใช้ใน inline JSX โดยตรง
+function FormHelperText({ children }: { children: React.ReactNode }) {
+  return (
+    <p style={{ color: "var(--text-secondary)", fontFamily: "DB HeaventRounded, sans-serif", fontSize: "var(--text-p)", margin: 0, textAlign: "center" }}>
+      {children}
+    </p>
   );
 }

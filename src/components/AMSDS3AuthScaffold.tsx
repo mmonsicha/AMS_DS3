@@ -1,40 +1,33 @@
 /**
- * AMSDS3AuthScaffold
- * อัปเดตเป็น DS3 tokens จาก MCP (2026-05-05)
+ * AMSDS3AuthScaffold — DS3 MCP Compliant (อัปเดต 2026-05-06)
  *
- * Typography tokens (MCP DS3):
- *   --text-h1   48px / 400  → Page title
- *   --text-h3   28px / 400  → Subtitle / body heading
- *   --text-p    20px / 400  → Body / helper
+ * DS3 Components ที่ใช้ในไฟล์นี้:
+ *   Card, CardBody          → layout card
+ *   FormHelperText          → legal footer text
+ *   ToastContainer          → toast notifications (วางไว้ root scaffold เพื่อให้ทุกหน้าใช้ได้)
+ *   DSButton variant="link" → แทน custom AMSDS3LinkButton
  *
- * Color tokens (MCP DS3):
- *   text-primary       → var(--text-primary)
- *   text-secondary     → var(--text-secondary)
- *   text-brand-primary → var(--text-brand-primary)  [เปลี่ยนจาก --fg-brand-primary]
- *   bg-secondary       → var(--bg-secondary)         [เปลี่ยนจาก --bg-disabled]
+ * Typography ใช้ DS3 token ทั้งหมด:
+ *   --text-h1  (48px) → AMSDS3Title
+ *   --text-h3  (28px) → AMSDS3Subtitle, AMSDS3AccentText
+ *   --text-p   (20px) → AMSDS3LegalFooter, AMSDS3LinkButton
+ *   --text-h4  (24px) → password label ใน sign-in step
  *
- * Components (DS3 latest):
- *   Card, CardBody  → import { Card, CardBody } from "@uxuissk/design-system"
- *
- * Gap ที่ยังแก้ไม่ได้:
- *   - SellsukiLogo ยังใช้ custom component (ไม่มี React export ตรงจาก DS package)
- *   - background images ยังเป็น asset เดิมจาก Figma bundle
+ * Known Gap ที่ยังคงอยู่:
+ *   - SellsukiLogo: ไม่มีใน DS3 catalog (63 components) → ยังใช้ custom component
+ *   - background decorative images: Figma asset → ไม่เกี่ยวกับ DS
  */
 
 import type { ReactNode } from "react";
-import { Card, CardBody, FormHelperText } from "@uxuissk/design-system";
+import { Card, CardBody, DSButton, FormHelperText, ToastContainer } from "@uxuissk/design-system";
 import { SellsukiLogo } from "./SellsukiLogo";
 import bgLeft from "../../assets/1419c16c978bd71ca944442ea8b3e61b517a5ce2.png";
 import bgRight from "../../assets/96c4a042eb96bdba14eaccbb00815526b9856ac7.png";
 
-// ─── Typography constants (DS3 MCP token values) ────────────────────────────
-const FONT_FAMILY = "DB HeaventRounded, sans-serif"; // DS3: Thai-first — ห้ามใช้ Inter
+// ─── DS3 Typography constants ────────────────────────────────────────────────
+const FONT = "DB HeaventRounded, sans-serif"; // DS3: Thai-first — ห้ามใช้ Inter
 
-const FS_H1 = "var(--text-h1)"; // 48px — Page titles
-const FS_H3 = "var(--text-h3)"; // 28px — Subtitles
-const FS_P  = "var(--text-p)";  // 20px — Body / helper
-
-// ─── Email icon ──────────────────────────────────────────────────────────────
+// ─── Email icon (SVG asset — ไม่มีใน DS3 catalog) ───────────────────────────
 export function AMSDS3EmailIcon() {
   return (
     <div style={{ alignItems: "center", display: "flex", height: "120px", justifyContent: "center", width: "120px" }}>
@@ -46,92 +39,53 @@ export function AMSDS3EmailIcon() {
   );
 }
 
-// ─── Text primitives ─────────────────────────────────────────────────────────
+// ─── Text primitives (DS3 token-based) ───────────────────────────────────────
+// DS3 ไม่มี Heading/Text React component — ใช้ semantic HTML + DS3 token แทน
 
-/** --text-h1 (48px / 400) — Page titles */
+/** --text-h1 (48px / 400) */
 export function AMSDS3Title({ children }: { children: ReactNode }) {
   return (
-    <h1
-      style={{
-        color: "var(--text-primary)",
-        fontFamily: FONT_FAMILY,
-        fontSize: FS_H1,
-        fontWeight: 400,
-        lineHeight: 1.1,
-        margin: 0,
-        textAlign: "center",
-      }}
-    >
+    <h1 style={{ color: "var(--text-primary)", fontFamily: FONT, fontSize: "var(--text-h1)", fontWeight: 400, lineHeight: 1.1, margin: 0, textAlign: "center" }}>
       {children}
     </h1>
   );
 }
 
-/** --text-h3 (28px / 400) — Subtitles / descriptions */
+/** --text-h3 (28px / 400) */
 export function AMSDS3Subtitle({ children }: { children: ReactNode }) {
   return (
-    <p
-      style={{
-        color: "var(--text-secondary)",
-        fontFamily: FONT_FAMILY,
-        fontSize: FS_H3,
-        fontWeight: 400,
-        lineHeight: 1.3,
-        margin: 0,
-        textAlign: "center",
-        whiteSpace: "pre-line",
-      }}
-    >
+    <p style={{ color: "var(--text-secondary)", fontFamily: FONT, fontSize: "var(--text-h3)", fontWeight: 400, lineHeight: 1.3, margin: 0, textAlign: "center", whiteSpace: "pre-line" }}>
       {children}
     </p>
   );
 }
 
-/** Brand accent inline span — --text-h3 (28px) */
+/** Brand accent inline span — --text-h3 (28px / 500) */
 export function AMSDS3AccentText({ children }: { children: ReactNode }) {
   return (
-    <span
-      style={{
-        color: "var(--text-brand-primary)", // DS3: Sky-500
-        fontFamily: FONT_FAMILY,
-        fontSize: FS_H3,
-        fontWeight: 500,
-      }}
-    >
+    <span style={{ color: "var(--text-brand-primary)", fontFamily: FONT, fontSize: "var(--text-h3)", fontWeight: 500 }}>
       {children}
     </span>
   );
 }
 
-/** Link-style button — --text-p (20px) by default */
+/**
+ * DS3 DSButton variant="link" — แทน custom button ก่อนหน้า
+ * size prop ยังรับได้เพื่อ backward compat แต่ DSButton จัดการ font size เอง
+ */
 export function AMSDS3LinkButton({
   children,
   onClick,
-  size,
+  size: _size,
 }: {
   children: ReactNode;
   onClick: () => void;
-  size?: string;
+  size?: string; // รับไว้เพื่อ backward compat — ไม่ส่งต่อ DSButton (ใช้ DS3 default)
 }) {
   return (
-    <button
-      onClick={onClick}
-      style={{
-        background: "transparent",
-        border: 0,
-        color: "var(--text-brand-primary)", // DS3: Sky-500
-        cursor: "pointer",
-        fontFamily: FONT_FAMILY,
-        fontSize: size ?? FS_P,
-        fontWeight: 500,
-        padding: 0,
-        textDecoration: "underline",
-        textUnderlineOffset: "2px",
-      }}
-      type="button"
-    >
+    <DSButton variant="link" size="md" onClick={onClick} style={{ padding: 0, height: "auto", minHeight: 0 }}>
       {children}
-    </button>
+    </DSButton>
   );
 }
 
@@ -146,14 +100,11 @@ export function AMSDS3AuthScaffold({
   header: ReactNode;
 }) {
   return (
-    <div
-      style={{
-        background: "var(--bg-secondary)", // DS3: Gray-100 (#f3f4f6)
-        minHeight: "100vh",
-        overflow: "hidden",
-        position: "relative",
-      }}
-    >
+    <div style={{ background: "var(--bg-secondary)", minHeight: "100vh", overflow: "hidden", position: "relative" }}>
+      {/* DS3 ToastContainer — วางไว้ root เพื่อให้ toast ทุกหน้าแสดงได้ */}
+      <ToastContainer position="top-right" />
+
+      {/* Decorative background images (Figma asset) */}
       <div style={{ bottom: 0, height: "400px", left: 0, pointerEvents: "none", position: "absolute", width: "400px" }}>
         <img alt="" src={bgLeft} style={{ height: "100%", objectFit: "contain", objectPosition: "bottom left", width: "100%" }} />
       </div>
@@ -161,20 +112,9 @@ export function AMSDS3AuthScaffold({
         <img alt="" src={bgRight} style={{ height: "100%", objectFit: "contain", objectPosition: "bottom right", width: "100%" }} />
       </div>
 
-      <div
-        style={{
-          alignItems: "center",
-          display: "flex",
-          flexDirection: "column",
-          gap: "var(--space-32)",
-          justifyContent: "center",
-          minHeight: "100vh",
-          padding: "var(--space-48) var(--space-16)",
-          position: "relative",
-          zIndex: 1,
-        }}
-      >
-        <Card className="w-full max-w-[440px]">
+      {/* Content */}
+      <div style={{ alignItems: "center", display: "flex", flexDirection: "column", gap: "var(--space-32)", justifyContent: "center", minHeight: "100vh", padding: "var(--space-48) var(--space-16)", position: "relative", zIndex: 1 }}>
+        <Card className="w-full max-w-[440px]" elevation="sm">
           <CardBody style={{ padding: "var(--space-40)" }}>
             <div style={{ alignItems: "center", display: "flex", flexDirection: "column", gap: "var(--space-32)", width: "100%" }}>
               <div style={{ alignItems: "center", display: "flex", flexDirection: "column", gap: "var(--space-8)", width: "100%" }}>
@@ -195,6 +135,7 @@ export function AMSDS3AuthScaffold({
 export function AMSDS3LogoHeader({ title, subtitle }: { subtitle?: ReactNode; title: ReactNode }) {
   return (
     <>
+      {/* SellsukiLogo: ไม่มีใน DS3 catalog — ใช้ custom component จาก project */}
       <SellsukiLogo size={120} />
       <AMSDS3Title>{title}</AMSDS3Title>
       {subtitle ? <AMSDS3Subtitle>{subtitle}</AMSDS3Subtitle> : null}
@@ -203,16 +144,10 @@ export function AMSDS3LogoHeader({ title, subtitle }: { subtitle?: ReactNode; ti
 }
 
 // ─── Legal footer ─────────────────────────────────────────────────────────────
+/** DS3 FormHelperText + DS3 --text-p token */
 export function AMSDS3LegalFooter({ children }: { children: ReactNode }) {
   return (
-    <FormHelperText
-      style={{
-        fontFamily: FONT_FAMILY,
-        fontSize: FS_P,
-        lineHeight: 1.5,
-        textAlign: "center",
-      }}
-    >
+    <FormHelperText style={{ fontFamily: FONT, fontSize: "var(--text-p)", lineHeight: 1.5, textAlign: "center" }}>
       {children}
     </FormHelperText>
   );

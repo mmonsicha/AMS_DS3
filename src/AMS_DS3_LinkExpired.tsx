@@ -4,11 +4,7 @@
  */
 import { useNavigate } from "react-router";
 import { DSButton } from "@uxuissk/design-system";
-import {
-  AMSDS3AuthScaffold,
-  AMSDS3Subtitle,
-  AMSDS3Title,
-} from "../components/AMSDS3AuthScaffold";
+import { AMSDS3AuthScaffold, AMSDS3Subtitle, AMSDS3Title } from "../components/AMSDS3AuthScaffold";
 
 function ExpiredIcon() {
   return (
@@ -23,7 +19,6 @@ function ExpiredIcon() {
 
 export default function AMS_DS3_LinkExpired() {
   const navigate = useNavigate();
-
   return (
     <AMSDS3AuthScaffold
       header={
@@ -35,12 +30,8 @@ export default function AMS_DS3_LinkExpired() {
       }
     >
       <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-12)", width: "100%" }}>
-        <DSButton fullWidth size="lg" onClick={() => navigate("/ams-ds3/forgot-password")}>
-          ขอลิงก์ใหม่
-        </DSButton>
-        <DSButton fullWidth size="lg" variant="ghost" onClick={() => navigate("/ams-ds3")}>
-          กลับไปเข้าสู่ระบบ
-        </DSButton>
+        <DSButton fullWidth size="lg" onClick={() => navigate("/ams-ds3/forgot-password")}>ขอลิงก์ใหม่</DSButton>
+        <DSButton fullWidth size="lg" variant="ghost" onClick={() => navigate("/ams-ds3")}>กลับไปเข้าสู่ระบบ</DSButton>
       </div>
     </AMSDS3AuthScaffold>
   );

@@ -1,17 +1,11 @@
 /**
  * AMS_DS3_VerifyEmail
- * DS3: DSButton, toast
+ * DS3: DSButton, toast (ToastContainer อยู่ใน scaffold แล้ว)
  */
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { DSButton, toast } from "@uxuissk/design-system";
-import {
-  AMSDS3AccentText,
-  AMSDS3AuthScaffold,
-  AMSDS3EmailIcon,
-  AMSDS3Subtitle,
-  AMSDS3Title,
-} from "../components/AMSDS3AuthScaffold";
+import { AMSDS3AccentText, AMSDS3AuthScaffold, AMSDS3EmailIcon, AMSDS3Subtitle, AMSDS3Title } from "../components/AMSDS3AuthScaffold";
 
 export default function AMS_DS3_VerifyEmail() {
   const navigate = useNavigate();
@@ -53,20 +47,14 @@ export default function AMS_DS3_VerifyEmail() {
     >
       <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-12)", width: "100%" }}>
         <DSButton
-          fullWidth
-          size="lg"
-          loading={resending}
-          onClick={handleResend}
-          disabled={countdown > 0}
+          fullWidth size="lg" loading={resending}
+          onClick={handleResend} disabled={countdown > 0}
           variant={countdown === 0 && !resending ? "primary" : "secondary"}
         >
           {countdown > 0 ? `ส่งอีกครั้ง (${countdown}s)` : "ส่งอีกครั้ง"}
         </DSButton>
 
-        <DSButton
-          fullWidth
-          size="lg"
-          variant="ghost"
+        <DSButton fullWidth size="lg" variant="ghost"
           onClick={() => navigate("/ams-ds3/signup/verify-email/success", { state: { email } })}
         >
           จำลอง: ยืนยันอีเมลสำเร็จ
