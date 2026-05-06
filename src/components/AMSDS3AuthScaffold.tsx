@@ -95,7 +95,7 @@ export function AMSDS3AuthScaffold({
       {/* Bg left */}
       <div style={{
         bottom: 0, height: "400px", left: 0,
-        pointerEvents: "none", position: "absolute", width: "400px", zIndex: 0,
+        pointerEvents: "none", position: "fixed", width: "400px", zIndex: 0,
       }}>
         <img alt="" src={bgLeft} style={{ height: "100%", objectFit: "cover", objectPosition: "bottom left", width: "100%" }} />
       </div>
@@ -103,7 +103,7 @@ export function AMSDS3AuthScaffold({
       {/* Bg right */}
       <div style={{
         bottom: 0, height: "400px",
-        pointerEvents: "none", position: "absolute", right: 0, width: "400px", zIndex: 0,
+        pointerEvents: "none", position: "fixed", right: 0, width: "400px", zIndex: 0,
       }}>
         <img alt="" src={bgRight} style={{ height: "100%", objectFit: "cover", objectPosition: "bottom right", width: "100%" }} />
       </div>
