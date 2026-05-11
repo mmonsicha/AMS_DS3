@@ -1,34 +1,23 @@
-export function SellsukiLogo({ size = 120 }: { size?: number }) {
+/**
+ * SellsukiLogo — Custom component (DS3 Gap #3: ไม่มีใน DS3 catalog)
+ * Design: wordmark-style S icon ใน rounded rect, gradient Sky blue
+ */
+export function SellsukiLogo({ size = 96 }: { size?: number }) {
+  const r = size * 0.233; // corner radius ratio
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 120 120"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      {/* App icon style — rounded rect with S */}
-      <rect width="120" height="120" rx="28" fill="url(#ssk_grad)" />
+    <svg width={size} height={size} viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sellsuki">
       <defs>
-        <linearGradient id="ssk_grad" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#38bdf8" />
-          <stop offset="100%" stopColor="#0284c7" />
+        <linearGradient id="logo_bg" x1="0" y1="0" x2="96" y2="96" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#56c4ff" />
+          <stop offset="100%" stopColor="#1b8bf5" />
         </linearGradient>
       </defs>
-      {/* Stylized S */}
+      {/* Rounded rect background */}
+      <rect width="96" height="96" rx={r} fill="url(#logo_bg)" />
+      {/* S lettermark — double curve */}
       <path
-        d="M38 42 C38 36 43 32 52 32 L72 32 C78 32 82 36 82 42 C82 48 78 52 72 52 L52 52 C46 52 40 56 40 62 C40 68 44 74 52 74 L74 74"
-        stroke="white"
-        strokeWidth="8"
-        strokeLinecap="round"
-        fill="none"
-      />
-      <path
-        d="M82 78 C82 84 77 88 68 88 L46 88 C40 88 36 84 36 78 C36 72 40 68 46 68 L68 68 C74 68 80 64 80 58"
-        stroke="white"
-        strokeWidth="8"
-        strokeLinecap="round"
-        fill="none"
+        d="M62 28H44c-6 0-10 4-10 9s4 9 10 9h8c6 0 10 4 10 9s-4 9-10 9H34"
+        stroke="white" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" fill="none"
       />
     </svg>
   );

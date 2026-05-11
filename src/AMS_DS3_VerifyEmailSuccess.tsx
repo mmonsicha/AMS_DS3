@@ -4,7 +4,7 @@
  */
 import { useLocation, useNavigate } from "react-router-dom";
 import { DSButton } from "@uxuissk/design-system";
-import { AMSDS3AccentText, AMSDS3AuthScaffold, AMSDS3LogoHeader, AMSDS3Subtitle } from "./components/AMSDS3AuthScaffold";
+import { AMSDS3AccentText, AMSDS3AuthScaffold, AMSDS3LogoHeader, AMSDS3Subtitle  } from "./components/AMSDS3AuthScaffold";
 
 export default function AMS_DS3_VerifyEmailSuccess() {
   const navigate = useNavigate();

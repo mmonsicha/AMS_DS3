@@ -1,3 +1,4 @@
+// DS3: CSS import ต้องเป็น FIRST — ก่อน component import ทุกตัว
 import "@uxuissk/design-system/styles.css";
 import "./tailwind.css";
 import "./index.css";

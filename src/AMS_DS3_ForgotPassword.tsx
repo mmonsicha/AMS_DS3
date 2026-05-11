@@ -29,7 +29,7 @@ export default function AMS_DS3_ForgotPassword() {
       header={<AMSDS3LogoHeader title="ลืมรหัสผ่าน" subtitle="กรอกอีเมลเพื่อรับลิงก์รีเซ็ตรหัสผ่าน" />}
     >
       {/* gap: 24px ระหว่าง form section */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "24px", width: "100%" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 32, width: "100%" }}>
         <DSInput
           fullWidth
           label="อีเมล"
@@ -41,7 +41,7 @@ export default function AMS_DS3_ForgotPassword() {
           value={email}
           onChange={(e) => { setEmail(e.target.value); setEmailError(""); }}
         />
-        <div style={{ display: "flex", flexDirection: "column", gap: "12px", width: "100%" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 12, width: "100%" }}>
           <DSButton fullWidth size="lg" loading={loading} onClick={handleSubmit} disabled={!email.trim()}>
             ส่งลิงก์รีเซ็ตรหัสผ่าน
           </DSButton>

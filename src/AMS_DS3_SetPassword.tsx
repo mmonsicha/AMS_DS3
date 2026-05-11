@@ -71,7 +71,7 @@ export default function AMS_DS3_SetPassword() {
         </>
       }
     >
-      <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "100%" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 16, width: "100%" }}>
         <DSInput
           fullWidth label="ตั้งรหัสผ่าน" placeholder="ระบุรหัสผ่าน"
           showPasswordToggle type="password" inputSize="lg"

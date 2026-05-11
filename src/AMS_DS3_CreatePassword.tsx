@@ -55,7 +55,7 @@ export default function AMS_DS3_CreatePassword() {
 
   return (
     <AMSDS3AuthScaffold header={<AMSDS3LogoHeader title="ตั้งรหัสผ่านใหม่ของคุณ" />}>
-      <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "100%" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 16, width: "100%" }}>
         <DSInput
           fullWidth label="ตั้งรหัสผ่านใหม่" placeholder="ระบุรหัสผ่านใหม่"
           showPasswordToggle type="password" inputSize="lg"
