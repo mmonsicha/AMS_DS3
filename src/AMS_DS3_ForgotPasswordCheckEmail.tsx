@@ -22,7 +22,7 @@ export default function AMS_DS3_ForgotPasswordCheckEmail() {
         </>
       }
     >
-      <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-12)", width: "100%" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 12, width: "100%" }}>
         <DSButton fullWidth size="lg" onClick={() => navigate("/ams-ds3/forgot-password/create-password", { state: { email } })}>
           จำลอง: คลิกลิงก์ในอีเมล
         </DSButton>

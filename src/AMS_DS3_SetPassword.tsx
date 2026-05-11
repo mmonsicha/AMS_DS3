@@ -71,7 +71,7 @@ export default function AMS_DS3_SetPassword() {
         </>
       }
     >
-      <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-16)", width: "100%" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 16, width: "100%" }}>
         <DSInput
           fullWidth label="ตั้งรหัสผ่าน" placeholder="ระบุรหัสผ่าน"
           showPasswordToggle type="password" inputSize="lg"
@@ -82,7 +82,7 @@ export default function AMS_DS3_SetPassword() {
 
         {/* Gap #2: ใช้ ProgressBar แทน DS3 PasswordStrength ที่ยังไม่มี */}
         {password && (
-          <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-4)" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
             <ProgressBar value={strength.score * 25} size="sm" color={strength.color} />
             <span style={{ color: strength.color, fontFamily: "DB HeaventRounded, sans-serif", fontSize: "var(--text-label)" }}>
               ความแข็งแกร่งรหัสผ่าน: {strength.label}

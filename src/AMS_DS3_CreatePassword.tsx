@@ -55,7 +55,7 @@ export default function AMS_DS3_CreatePassword() {
 
   return (
     <AMSDS3AuthScaffold header={<AMSDS3LogoHeader title="ตั้งรหัสผ่านใหม่ของคุณ" />}>
-      <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-16)", width: "100%" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 16, width: "100%" }}>
         <DSInput
           fullWidth label="ตั้งรหัสผ่านใหม่" placeholder="ระบุรหัสผ่านใหม่"
           showPasswordToggle type="password" inputSize="lg"
@@ -66,7 +66,7 @@ export default function AMS_DS3_CreatePassword() {
 
         {/* Gap #2: ProgressBar แทน PasswordStrength */}
         {newPassword && (
-          <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-4)" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
             <ProgressBar value={strength.score * 25} size="sm" color={strength.color} />
             <span style={{ color: strength.color, fontFamily: "DB HeaventRounded, sans-serif", fontSize: "var(--text-label)" }}>
               ความแข็งแกร่งรหัสผ่าน: {strength.label}

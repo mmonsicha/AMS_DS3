@@ -1,7 +1,3 @@
-/**
- * AMS_DS3_ForgotPassword
- * DS3: DSButton, DSInput
- */
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { DSButton, DSInput } from "@uxuissk/design-system";
@@ -32,19 +28,27 @@ export default function AMS_DS3_ForgotPassword() {
     <AMSDS3AuthScaffold
       header={<AMSDS3LogoHeader title="ลืมรหัสผ่าน" subtitle="กรอกอีเมลเพื่อรับลิงก์รีเซ็ตรหัสผ่าน" />}
     >
-      <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-16)", width: "100%" }}>
+      {/* gap: 24px ระหว่าง form section */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 32, width: "100%" }}>
         <DSInput
-          fullWidth label="อีเมล" placeholder="ระบุอีเมล" type="email" inputSize="lg"
-          state={emailError ? "error" : "default"} errorMessage={emailError}
+          fullWidth
+          label="อีเมล"
+          placeholder="ระบุอีเมล"
+          type="email"
+          inputSize="lg"
+          state={emailError ? "error" : "default"}
+          errorMessage={emailError}
           value={email}
           onChange={(e) => { setEmail(e.target.value); setEmailError(""); }}
         />
-        <DSButton fullWidth size="lg" loading={loading} onClick={handleSubmit} disabled={!email.trim()}>
-          ส่งลิงก์รีเซ็ตรหัสผ่าน
-        </DSButton>
-        <DSButton fullWidth size="lg" variant="ghost" onClick={() => navigate("/ams-ds3")}>
-          กลับไปเข้าสู่ระบบ
-        </DSButton>
+        <div style={{ display: "flex", flexDirection: "column", gap: 12, width: "100%" }}>
+          <DSButton fullWidth size="lg" loading={loading} onClick={handleSubmit} disabled={!email.trim()}>
+            ส่งลิงก์รีเซ็ตรหัสผ่าน
+          </DSButton>
+          <DSButton fullWidth size="lg" variant="ghost" onClick={() => navigate("/ams-ds3")}>
+            กลับไปเข้าสู่ระบบ
+          </DSButton>
+        </div>
       </div>
     </AMSDS3AuthScaffold>
   );
