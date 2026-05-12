@@ -24,8 +24,8 @@
 import type { ReactNode } from "react";
 import { Card, CardBody, DSButton, FormHelperText, ToastContainer } from "@uxuissk/design-system";
 import { SellsukiLogo } from "./SellsukiLogo";
-import bgLeft from "../assets/1419c16c978bd71ca944442ea8b3e61b517a5ce2.png";
-import bgRight from "../assets/96c4a042eb96bdba14eaccbb00815526b9856ac7.png";
+import bgLeft from "../assets/bg-left.png";
+import bgRight from "../assets/bg-right.png";
 
 // ─── Typography (DS3 tokens + px fallback) ────────────────────────────────────
 const FONT = "DB HeaventRounded, sans-serif"; // DS3: Thai-first, ห้ามใช้ Inter
@@ -98,12 +98,12 @@ export function AMSDS3AuthScaffold({ children, footer, header }: { children: Rea
       {/* DS3 ToastContainer — ไม่รับ props */}
       <ToastContainer />
 
-      {/* Figma decorative background images — bottom corners */}
-      <div style={{ bottom: 0, left: 0, pointerEvents: "none", position: "fixed", width: 400, zIndex: 0 }}>
-        <img alt="" src={bgLeft} style={{ display: "block", height: "auto", maxHeight: 400, objectFit: "contain", objectPosition: "bottom left", width: "100%" }} />
+      {/* Figma bg mascots — bottom corners, 600x600px (node 6142:412918) */}
+      <div style={{ bottom: 0, left: 0, pointerEvents: "none", position: "fixed", width: 600, zIndex: 0 }}>
+        <img alt="" src={bgLeft} style={{ display: "block", height: "auto", maxHeight: 600, objectFit: "contain", objectPosition: "bottom left", width: "100%" }} />
       </div>
-      <div style={{ bottom: 0, pointerEvents: "none", position: "fixed", right: 0, width: 400, zIndex: 0 }}>
-        <img alt="" src={bgRight} style={{ display: "block", height: "auto", maxHeight: 400, objectFit: "contain", objectPosition: "bottom right", width: "100%" }} />
+      <div style={{ bottom: 0, pointerEvents: "none", position: "fixed", right: 0, width: 600, zIndex: 0 }}>
+        <img alt="" src={bgRight} style={{ display: "block", height: "auto", maxHeight: 600, objectFit: "contain", objectPosition: "bottom right", width: "100%" }} />
       </div>
 
       {/* Center column */}
