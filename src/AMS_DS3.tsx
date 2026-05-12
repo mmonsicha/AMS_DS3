@@ -8,8 +8,8 @@ import { useLocation, useNavigate } from "react-router";
 import { DSButton, DSInput, Divider, toast } from "@uxuissk/design-system";
 import {
   AMSDS3AuthScaffold, AMSDS3LegalFooter, AMSDS3LinkButton, AMSDS3LogoHeader, GAP_ACTIONS, GAP_FORM,
-} from "../components/AMSDS3AuthScaffold";
-import { FacebookIcon, GoogleIcon, LineIcon } from "../components/SocialIcons";
+} from "./components/AMSDS3AuthScaffold";
+import { FacebookIcon, GoogleIcon, LineIcon } from "./components/SocialIcons";
 
 const FONT = "DB HeaventRounded, sans-serif";
 const CLR_PRIMARY = "var(--text-primary, #1f2937)";

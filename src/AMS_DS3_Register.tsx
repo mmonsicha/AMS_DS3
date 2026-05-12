@@ -10,7 +10,7 @@ import {
   AMSDS3AuthScaffold,
   AMSDS3LinkButton,
   AMSDS3LogoHeader,
-} from "../components/AMSDS3AuthScaffold";
+} from "./components/AMSDS3AuthScaffold";
 
 export default function AMS_DS3_Register() {
   const navigate = useNavigate();

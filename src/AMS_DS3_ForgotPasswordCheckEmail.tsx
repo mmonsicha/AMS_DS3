@@ -4,7 +4,7 @@
  */
 import { useLocation, useNavigate } from "react-router";
 import { DSButton } from "@uxuissk/design-system";
-import { AMSDS3AuthScaffold, AMSDS3EmailIcon, AMSDS3Subtitle, AMSDS3Title } from "../components/AMSDS3AuthScaffold";
+import { AMSDS3AuthScaffold, AMSDS3EmailIcon, AMSDS3Subtitle, AMSDS3Title } from "./components/AMSDS3AuthScaffold";
 
 export default function AMS_DS3_ForgotPasswordCheckEmail() {
   const navigate = useNavigate();

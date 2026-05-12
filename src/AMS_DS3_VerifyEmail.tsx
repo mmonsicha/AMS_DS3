@@ -5,7 +5,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { DSButton, toast } from "@uxuissk/design-system";
-import { AMSDS3AccentText, AMSDS3AuthScaffold, AMSDS3EmailIcon, AMSDS3Subtitle, AMSDS3Title } from "../components/AMSDS3AuthScaffold";
+import { AMSDS3AccentText, AMSDS3AuthScaffold, AMSDS3EmailIcon, AMSDS3Subtitle, AMSDS3Title } from "./components/AMSDS3AuthScaffold";
 
 export default function AMS_DS3_VerifyEmail() {
   const navigate = useNavigate();

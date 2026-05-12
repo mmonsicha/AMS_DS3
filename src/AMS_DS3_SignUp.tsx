@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { DSButton, DSCheckbox, DSInput, Divider, toast } from "@uxuissk/design-system";
-import { AMSDS3AuthScaffold, AMSDS3LegalFooter, AMSDS3LinkButton, AMSDS3LogoHeader, GAP_ACTIONS, GAP_FORM } from "../components/AMSDS3AuthScaffold";
-import { FacebookIcon, GoogleIcon, LineIcon } from "../components/SocialIcons";
+import { AMSDS3AuthScaffold, AMSDS3LegalFooter, AMSDS3LinkButton, AMSDS3LogoHeader, GAP_ACTIONS, GAP_FORM } from "./components/AMSDS3AuthScaffold";
+import { FacebookIcon, GoogleIcon, LineIcon } from "./components/SocialIcons";
 
 const CLR_SECONDARY = "var(--text-secondary, #6b7280)";
 const FONT = "DB HeaventRounded, sans-serif";

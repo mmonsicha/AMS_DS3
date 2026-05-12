@@ -4,7 +4,7 @@
  */
 import { useNavigate } from "react-router";
 import { DSButton } from "@uxuissk/design-system";
-import { AMSDS3AuthScaffold, AMSDS3Subtitle, AMSDS3Title } from "../components/AMSDS3AuthScaffold";
+import { AMSDS3AuthScaffold, AMSDS3Subtitle, AMSDS3Title } from "./components/AMSDS3AuthScaffold";
 
 function ExpiredIcon() {
   return (

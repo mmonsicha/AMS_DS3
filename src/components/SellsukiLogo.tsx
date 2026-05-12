@@ -1,7 +1,7 @@
 /**
- * SellsukiLogo — Placeholder (DS3 Gap #3)
- * รูปแบบ: wordmark S บน rounded rect gradient Sky blue
+ * SellsukiLogo — Brand placeholder (DS3 Gap #3)
  * ใช้จนกว่า DS3 จะ export Logo component จริง
+ * Style: wordmark S บน gradient Sky-400→Sky-600 rounded rect
  */
 export function SellsukiLogo({ size = 96 }: { size?: number }) {
   return (
@@ -12,19 +12,23 @@ export function SellsukiLogo({ size = 96 }: { size?: number }) {
       role="img" aria-label="Sellsuki"
     >
       <defs>
-        <linearGradient id="ssk_g" x1="0" y1="0" x2="96" y2="96" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#60cfff" />
-          <stop offset="100%" stopColor="#1b8bf5" />
+        <linearGradient id="ssk_bg" x1="0" y1="0" x2="96" y2="96" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#38bdf8" />
+          <stop offset="100%" stopColor="#0284c7" />
         </linearGradient>
-        <clipPath id="ssk_clip">
-          <rect width="96" height="96" rx="22" />
-        </clipPath>
+        <linearGradient id="ssk_shine" x1="0" y1="0" x2="0" y2="40" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="white" stopOpacity="0.18" />
+          <stop offset="100%" stopColor="white" stopOpacity="0" />
+        </linearGradient>
       </defs>
-      <rect width="96" height="96" rx="22" fill="url(#ssk_g)" />
-      {/* S lettermark — clean double-arc */}
+      {/* Background */}
+      <rect width="96" height="96" rx="22" fill="url(#ssk_bg)" />
+      {/* Shine overlay */}
+      <rect width="96" height="40" rx="22" fill="url(#ssk_shine)" />
+      {/* S lettermark */}
       <path
-        d="M63 30C63 30 57 26 48 26C39 26 32 31 32 38C32 45 38 48 48 48C58 48 64 51 64 58C64 65 57 70 48 70C39 70 33 66 33 66"
-        stroke="white" strokeWidth="7.5" strokeLinecap="round" fill="none"
+        d="M62 30C62 30 56 26 47 26C38 26 31 31 31 38.5C31 46 37.5 49 47 49C56.5 49 63 52 63 59.5C63 67 56 70 47 70C38 70 32 66 32 66"
+        stroke="white" strokeWidth="8" strokeLinecap="round" fill="none"
       />
     </svg>
   );

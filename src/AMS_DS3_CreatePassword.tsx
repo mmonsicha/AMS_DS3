@@ -5,7 +5,7 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { DSButton, DSInput, ProgressBar, toast } from "@uxuissk/design-system";
-import { AMSDS3AuthScaffold, AMSDS3LogoHeader } from "../components/AMSDS3AuthScaffold";
+import { AMSDS3AuthScaffold, AMSDS3LogoHeader } from "./components/AMSDS3AuthScaffold";
 
 function getPasswordStrength(pw: string): { score: number; label: string; color: string } {
   if (!pw) return { score: 0, label: "", color: "var(--color-neutral-300)" };

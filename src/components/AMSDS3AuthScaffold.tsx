@@ -24,8 +24,8 @@
 import type { ReactNode } from "react";
 import { Card, CardBody, DSButton, FormHelperText, ToastContainer } from "@uxuissk/design-system";
 import { SellsukiLogo } from "./SellsukiLogo";
-import bgLeft from "../../assets/1419c16c978bd71ca944442ea8b3e61b517a5ce2.png";
-import bgRight from "../../assets/96c4a042eb96bdba14eaccbb00815526b9856ac7.png";
+import bgLeft from "../assets/1419c16c978bd71ca944442ea8b3e61b517a5ce2.png";
+import bgRight from "../assets/96c4a042eb96bdba14eaccbb00815526b9856ac7.png";
 
 // ─── Typography (DS3 tokens + px fallback) ────────────────────────────────────
 const FONT = "DB HeaventRounded, sans-serif"; // DS3: Thai-first, ห้ามใช้ Inter

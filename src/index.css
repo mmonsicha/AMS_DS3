@@ -1,0 +1,21 @@
+/* AMS DS3 — global styles */
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-family: "DB HeaventRounded", sans-serif; }
+
+/* DS3 FormHelperText override — legal footer */
+.ams-legal-footer {
+  color: var(--text-secondary, #6b7280) !important;
+  font-family: "DB HeaventRounded", sans-serif !important;
+  font-size: var(--text-caption, 14px) !important;
+  line-height: 1.6 !important;
+  text-align: center !important;
+}
+
+/* Social button inner layout */
+.ams-social-btn {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+}
