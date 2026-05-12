@@ -99,11 +99,11 @@ export function AMSDS3AuthScaffold({ children, footer, header }: { children: Rea
       <ToastContainer />
 
       {/* Figma decorative background images — bottom corners */}
-      <div style={{ bottom: 0, left: 0, pointerEvents: "none", position: "fixed", width: 400, zIndex: 0 }}>
-        <img alt="" src={bgLeft} style={{ display: "block", height: "auto", maxHeight: 400, objectFit: "contain", objectPosition: "bottom left", width: "100%" }} />
+      <div style={{ bottom: 0, left: 0, pointerEvents: "none", position: "fixed", width: 500, zIndex: 0 }}>
+        <img alt="" src={bgLeft} style={{ display: "block", height: "auto", maxHeight: 500, objectFit: "contain", objectPosition: "bottom left", width: "100%" }} />
       </div>
-      <div style={{ bottom: 0, pointerEvents: "none", position: "fixed", right: 0, width: 400, zIndex: 0 }}>
-        <img alt="" src={bgRight} style={{ display: "block", height: "auto", maxHeight: 400, objectFit: "contain", objectPosition: "bottom right", width: "100%" }} />
+      <div style={{ bottom: 0, pointerEvents: "none", position: "fixed", right: 0, width: 500, zIndex: 0 }}>
+        <img alt="" src={bgRight} style={{ display: "block", height: "auto", maxHeight: 500, objectFit: "contain", objectPosition: "bottom right", width: "100%" }} />
       </div>
 
       {/* Center column */}
