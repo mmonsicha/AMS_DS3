@@ -39,7 +39,7 @@ const CARD_PADDING  = 40;    // px — inner padding
 const GAP_SECTION   = 32;    // px — ระหว่าง header/form/footer sections
 const GAP_HEADER    = 8;     // px — ระหว่าง logo, title, subtitle
 const GAP_FORM      = 16;    // px — ระหว่าง form fields (DS3 semantic: card-gap)
-const GAP_ACTIONS   = 12;    // px — ระหว่าง action buttons
+const GAP_ACTIONS   = 16;    // px — ระหว่าง action buttons (Figma: spacing-3xl)
 const BG_COLOR      = "var(--bg-secondary, #F3F4F6)";
 
 // ─── Email icon ───────────────────────────────────────────────────────────────
@@ -55,19 +55,19 @@ export function AMSDS3EmailIcon() {
 }
 
 // ─── Text primitives (semantic HTML + DS3 token) ──────────────────────────────
-/** --text-h1 (48px/400) — Page title */
+/** H3 - 3XL/44px Bold — Page title (Figma: node 6142:412911) */
 export function AMSDS3Title({ children }: { children: ReactNode }) {
   return (
-    <h1 style={{ color: CLR_PRIMARY, fontFamily: FONT, fontSize: "var(--text-h1, 48px)", fontWeight: 700, lineHeight: 1.15, margin: 0, textAlign: "center" }}>
+    <h1 style={{ color: CLR_PRIMARY, fontFamily: FONT, fontSize: 44, fontWeight: 700, lineHeight: 1, margin: 0, textAlign: "center" }}>
       {children}
     </h1>
   );
 }
 
-/** --text-p (20px/400) — Subtitle / description */
+/** H5 - XL/28px Regular — Subtitle / description (Figma: node 6142:412911) */
 export function AMSDS3Subtitle({ children }: { children: ReactNode }) {
   return (
-    <p style={{ color: CLR_SECONDARY, fontFamily: FONT, fontSize: "var(--text-p, 20px)", fontWeight: 400, lineHeight: 1.5, margin: 0, textAlign: "center", whiteSpace: "pre-line" }}>
+    <p style={{ color: CLR_SECONDARY, fontFamily: FONT, fontSize: 28, fontWeight: 400, lineHeight: 1, margin: 0, textAlign: "center", whiteSpace: "pre-line" }}>
       {children}
     </p>
   );
@@ -140,7 +140,7 @@ export function AMSDS3AuthScaffold({ children, footer, header }: { children: Rea
 export function AMSDS3LogoHeader({ title, subtitle }: { subtitle?: ReactNode; title: ReactNode }) {
   return (
     <>
-      <SellsukiLogo size={96} />
+      <SellsukiLogo size={120} />
       <AMSDS3Title>{title}</AMSDS3Title>
       {subtitle ? <AMSDS3Subtitle>{subtitle}</AMSDS3Subtitle> : null}
     </>

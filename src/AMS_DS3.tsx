@@ -57,8 +57,10 @@ export default function AMS_DS3() {
       }
       footer={
         <AMSDS3LegalFooter>
-          การคลิก "เข้าสู่ระบบ" ข้างต้น แสดงว่าคุณได้อ่านและเข้าใจ และยินยอมตาม
-          <br />นโยบายความเป็นส่วนตัว และ คุ้มครองข้อมูลส่วนบุคคล
+          การคลิก "เข้าสู่ระบบ" ข้างต้น แสดงว่าคุณได้อ่านและเข้าใจ และยินยอมตาม{" "}
+          <span style={{ color: "#1b8bf5" }}>เงื่อนไขข้อตกลงในการให้บริการ</span>{" "}
+          และ{" "}
+          <span style={{ color: "#1b8bf5" }}>นโยบายความเป็นส่วนตัว</span>
         </AMSDS3LegalFooter>
       }
     >
@@ -70,7 +72,7 @@ export default function AMS_DS3() {
             value={email} onChange={e => { setEmail(e.target.value); setEmailError(""); }}
           />
           <DSButton fullWidth size="lg" onClick={handleEmailNext} disabled={!email.trim()}>ต่อไป</DSButton>
-          <p style={{ color: CLR_SECONDARY, fontFamily: FONT, fontSize: 16, margin: 0, textAlign: "center" }}>
+          <p style={{ color: CLR_SECONDARY, fontFamily: FONT, fontSize: 20, margin: 0, textAlign: "center" }}>
             ยังไม่มีบัญชีเข้าใช้งาน?{" "}
             <AMSDS3LinkButton onClick={() => navigate("/ams-ds3/signup")}>สมัครบัญชีผู้ใช้ใหม่ที่นี่</AMSDS3LinkButton>
           </p>
