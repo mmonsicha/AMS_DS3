@@ -10,8 +10,10 @@ import { AMSDS3AccentText, AMSDS3AuthScaffold, AMSDS3EmailIcon, AMSDS3Subtitle, 
 export default function AMS_DS3_VerifyEmail() {
   const navigate = useNavigate();
   const location = useLocation();
-  const state = location.state as { email?: string } | null;
-  const email = state?.email || "hello@sellsuki.com";
+  const state     = location.state as { email?: string; firstName?: string; lastName?: string } | null;
+  const email     = state?.email     || "hello@sellsuki.com";
+  const firstName = state?.firstName || "";
+  const lastName  = state?.lastName  || "";
 
   const [countdown, setCountdown] = useState(60);
   const [resending, setResending] = useState(false);
@@ -55,7 +57,7 @@ export default function AMS_DS3_VerifyEmail() {
         </DSButton>
 
         <DSButton fullWidth size="lg" variant="ghost"
-          onClick={() => navigate("/ams-ds3/signup/verify-email/success", { state: { email } })}
+          onClick={() => navigate("/ams-ds3/signup/verify-email/success", { state: { email, firstName, lastName } })}
         >
           จำลอง: ยืนยันอีเมลสำเร็จ
         </DSButton>

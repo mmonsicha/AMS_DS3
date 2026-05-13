@@ -35,8 +35,10 @@ function getPasswordStrength(pw: string): { score: number; label: string; color:
 export default function AMS_DS3_SetPassword() {
   const navigate = useNavigate();
   const location = useLocation();
-  const state = location.state as { email?: string } | null;
-  const email = state?.email || "hello@sellsuki.com";
+  const state = location.state as { email?: string; firstName?: string; lastName?: string } | null;
+  const email     = state?.email     || "hello@sellsuki.com";
+  const firstName = state?.firstName || "";
+  const lastName  = state?.lastName  || "";
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -58,7 +60,7 @@ export default function AMS_DS3_SetPassword() {
     setLoading(true);
     await new Promise((r) => setTimeout(r, 1200));
     setLoading(false);
-    navigate("/ams-ds3/signup/verify-email", { state: { email } });
+    navigate("/ams-ds3/signup/verify-email", { state: { email, firstName, lastName } });
   };
 
   return (

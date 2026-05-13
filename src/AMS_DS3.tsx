@@ -44,7 +44,8 @@ export default function AMS_DS3() {
     if (!password.trim()) { setPasswordError("กรุณาระบุรหัสผ่าน"); return; }
     setPasswordError(""); setLoading(true);
     await new Promise(r => setTimeout(r, 1200));
-    setLoading(false); navigate("/app-selector", { state: { email } });
+    const displayName = localStorage.getItem("ams_display_name") || "";
+    setLoading(false); navigate("/app-selector", { state: { email, name: displayName } });
   };
 
   return (

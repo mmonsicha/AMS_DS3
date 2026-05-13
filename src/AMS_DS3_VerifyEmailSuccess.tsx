@@ -9,8 +9,13 @@ import { AMSDS3AccentText, AMSDS3AuthScaffold, AMSDS3LogoHeader, AMSDS3Subtitle 
 export default function AMS_DS3_VerifyEmailSuccess() {
   const navigate = useNavigate();
   const location = useLocation();
-  const state = location.state as { email?: string } | null;
-  const email = state?.email || "hello@sellsuki.com";
+  const state     = location.state as { email?: string; firstName?: string; lastName?: string } | null;
+  const email     = state?.email     || "hello@sellsuki.com";
+  const firstName = state?.firstName || "";
+  const lastName  = state?.lastName  || "";
+
+  // Persist name so the sign-in page can greet by name after registration
+  if (firstName) localStorage.setItem("ams_display_name", `${firstName}${lastName ? " " + lastName : ""}`.trim());
 
   return (
     <AMSDS3AuthScaffold

@@ -40,9 +40,10 @@ const APPS = [
 export default function AppSelectorPage() {
   const navigate  = useNavigate();
   const location  = useLocation();
-  const state     = location.state as { email?: string } | null;
-  const email     = state?.email ?? "";
-  const username  = email.includes("@") ? email.split("@")[0] : (email || "Username");
+  const state    = location.state as { email?: string; name?: string } | null;
+  const email    = state?.email ?? "";
+  const name     = state?.name  ?? "";
+  const username = name || (email.includes("@") ? email.split("@")[0] : email) || "Username";
 
   const handleLogout = () => {
     navigate("/ams-ds3", { state: { toast: "ออกจากระบบแล้ว", toastType: "info" } });
