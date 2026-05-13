@@ -1,35 +1,58 @@
 /**
  * AppSelectorPage — Phase 0 (Post-Login)
- * DS3 MCP: @uxuissk/design-system (DSButton, Card, CardBody, Badge, Tooltip, Avatar)
- * Route: /app-selector
+ * Figma: CRM-Posh-2025 node 476:14001
+ * DS3 MCP: DSButton (available)
+ * Custom: AppCard (#1), Oc2plusLogo (#2) — see GitHub issues
  */
 import { useNavigate } from "react-router";
-import { Avatar, Badge, Card, CardBody, DSButton, Tooltip } from "@uxuissk/design-system";
+import { DSButton } from "@uxuissk/design-system";
 import { SellsukiLogo } from "../components/SellsukiLogo";
+import { AppCard } from "../components/custom/AppCard";
+import { Oc2plusLogo } from "../components/custom/Oc2plusLogo";
+import akitaLogo  from "../assets/logo-akita.png";
+import patonaLogo from "../assets/logo-patona.png";
+import bgLeft  from "../assets/app-selector-bg-left.png";
+import bgRight from "../assets/app-selector-bg-right.png";
 
-const FONT = "DB HeaventRounded, sans-serif";
-const CLR_PAGE   = "var(--bg-secondary, #F3F4F6)";
-const CLR_WHITE  = "#ffffff";
-const CLR_BORDER = "var(--border-primary, #E5E7EB)";
-const CLR_ACTIVE = "#EC5E2A";
-const CLR_H      = "var(--text-primary, #1f2937)";
-const CLR_SUB    = "var(--text-secondary, #6b7280)";
-const CLR_MUTED  = "var(--text-placeholder, #9ca3af)";
+const FONT      = "DB HeaventRounded, sans-serif";
+const CLR_PAGE  = "var(--bg-secondary, #f9fafb)";
+const CLR_H     = "var(--text-primary, #1f2937)";
+const CLR_BRAND = "#32a9ff";
+
+const LogoutIcon = () => (
+  <svg fill="currentColor" height={24} viewBox="0 0 24 24" width={24}>
+    <path clipRule="evenodd" d="M7.5 3.75A1.5 1.5 0 006 5.25v13.5a1.5 1.5 0 001.5 1.5h6a1.5 1.5 0 001.5-1.5V15a.75.75 0 011.5 0v3.75a3 3 0 01-3 3h-6a3 3 0 01-3-3V5.25a3 3 0 013-3h6a3 3 0 013 3V9a.75.75 0 01-1.5 0V5.25A1.5 1.5 0 0013.5 3.75h-6zm10.72 4.72a.75.75 0 011.06 0l3 3a.75.75 0 010 1.06l-3 3a.75.75 0 11-1.06-1.06l1.72-1.72H9a.75.75 0 010-1.5h10.94l-1.72-1.72a.75.75 0 010-1.06z" fillRule="evenodd" />
+  </svg>
+);
+
+const PlusIcon = () => (
+  <svg fill="none" height={24} stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24" width={24}>
+    <path d="M12 4.5v15m7.5-7.5h-15" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
 
 const APPS = [
   {
+    id: "akita",
+    name: "Akita",
+    logo: <img alt="Akita" src={akitaLogo} style={{ height: 54, objectFit: "contain", width: 54 }} />,
+    url: null,
+    available: true,
+  },
+  {
     id: "patona",
     name: "Patona",
-    desc: "Seller Center — จัดการร้านค้าออนไลน์และออฟไลน์",
-    icon: "🏪",
+    logo: <img alt="Patona" src={patonaLogo} style={{ height: 54, objectFit: "contain", width: 57 }} />,
     url: "https://sellercenter.patona.online",
     available: true,
   },
-  { id: "app2", name: "ระบบที่ 2", desc: "อยู่ระหว่างการพัฒนา", icon: "📦", url: null, available: false },
-  { id: "app3", name: "ระบบที่ 3", desc: "อยู่ระหว่างการพัฒนา", icon: "📊", url: null, available: false },
-  { id: "app4", name: "ระบบที่ 4", desc: "อยู่ระหว่างการพัฒนา", icon: "🛒", url: null, available: false },
-  { id: "app5", name: "ระบบที่ 5", desc: "อยู่ระหว่างการพัฒนา", icon: "💬", url: null, available: false },
-  { id: "app6", name: "ระบบที่ 6", desc: "อยู่ระหว่างการพัฒนา", icon: "⚙️", url: null, available: false },
+  {
+    id: "oc2plus",
+    name: "Oc2plus",
+    logo: <Oc2plusLogo size={72} />,
+    url: null,
+    available: true,
+  },
 ];
 
 export default function AppSelectorPage() {
@@ -39,104 +62,95 @@ export default function AppSelectorPage() {
     navigate("/ams-ds3", { state: { toast: "ออกจากระบบแล้ว", toastType: "info" } });
   };
 
+  const handleAddApp = () => {
+    // TODO: implement add-application flow
+  };
+
   return (
-    <div style={{ background: CLR_PAGE, display: "flex", flexDirection: "column", fontFamily: FONT, minHeight: "100vh" }}>
+    <div style={{
+      alignItems: "center",
+      background: CLR_PAGE,
+      display: "flex",
+      fontFamily: FONT,
+      justifyContent: "center",
+      minHeight: "100vh",
+      position: "relative",
+    }}>
 
-      {/* ── Header ── */}
-      <header style={{
-        alignItems: "center", background: CLR_WHITE, borderBottom: `1px solid ${CLR_BORDER}`,
-        boxSizing: "border-box", display: "flex", height: 72,
-        justifyContent: "space-between", padding: "0 40px", width: "100%",
+      {/* Background mascots — fixed bottom corners */}
+      <img
+        alt=""
+        src={bgLeft}
+        style={{ bottom: 0, left: 0, maxHeight: 600, pointerEvents: "none", position: "fixed", width: 600 }}
+      />
+      <img
+        alt=""
+        src={bgRight}
+        style={{ bottom: 0, maxHeight: 600, pointerEvents: "none", position: "fixed", right: 0, width: 600 }}
+      />
+
+      {/* Center card */}
+      <div style={{
+        background: "#ffffff",
+        borderRadius: 12,
+        boxShadow: "0px 1px 3px rgba(10,13,18,0.1), 0px 1px 1.5px rgba(10,13,18,0.06)",
+        boxSizing: "border-box",
+        display: "flex",
+        flexDirection: "column",
+        gap: 32,
+        padding: "32px 40px",
+        position: "relative",
+        zIndex: 1,
       }}>
-        <div style={{ alignItems: "center", display: "flex", gap: 12 }}>
-          <SellsukiLogo size={40} />
-          <span style={{ color: CLR_H, fontSize: 24, fontWeight: 600 }}>
-            เลือกระบบที่ต้องการเข้าใช้
+
+        {/* Header: logo + greeting */}
+        <div style={{ alignItems: "center", display: "flex", flexDirection: "column", gap: 16 }}>
+          <SellsukiLogo size={55} />
+          <div style={{ alignItems: "baseline", display: "flex", fontSize: 36, fontWeight: 700, gap: 8, lineHeight: 1 }}>
+            <span style={{ color: CLR_H }}>สวัสดี!,</span>
+            <span style={{ color: CLR_BRAND }}>Username</span>
+          </div>
+        </div>
+
+        {/* App selector */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          <span style={{ color: CLR_H, fontSize: 24, fontWeight: 500, lineHeight: 1 }}>
+            กรุณาเลือกระบบที่ต้องการเข้าใช้งาน
           </span>
-        </div>
-        <div style={{ alignItems: "center", display: "flex", gap: 16 }}>
-          <Avatar name="User" size="sm" />
-          <DSButton size="md" variant="outline" onClick={handleLogout}>
-            ออกจากระบบ
-          </DSButton>
-        </div>
-      </header>
-
-      {/* ── Body ── */}
-      <main style={{ alignItems: "center", display: "flex", flex: 1, flexDirection: "column", gap: 40, padding: "60px 40px" }}>
-        <div style={{ display: "flex", flexDirection: "column", gap: 8, textAlign: "center" }}>
-          <span style={{ color: CLR_H, fontSize: 36, fontWeight: 700 }}>ยินดีต้อนรับสู่ Sellsuki</span>
-          <span style={{ color: CLR_SUB, fontSize: 20 }}>กรุณาเลือกระบบที่ต้องการเข้าใช้งาน</span>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
+            {APPS.map((app) => (
+              <AppCard
+                key={app.id}
+                logo={app.logo}
+                name={app.name}
+                disabled={!app.available}
+                onClick={() => app.url ? (window.location.href = app.url) : undefined}
+              />
+            ))}
+          </div>
         </div>
 
-        {/* App Grid */}
-        <div style={{ display: "grid", gap: 24, gridTemplateColumns: "repeat(3, 1fr)", maxWidth: 960, width: "100%" }}>
-          {APPS.map((app) => (
-            <Tooltip key={app.id} content={app.available ? undefined! : "เร็วๆ นี้"} placement="top">
-              <div
-                onClick={() => app.available && app.url && (window.location.href = app.url)}
-                style={{
-                  cursor: app.available ? "pointer" : "not-allowed",
-                  opacity: app.available ? 1 : 0.55,
-                  transition: "all 0.2s ease",
-                }}
-                onMouseEnter={e => {
-                  if (!app.available) return;
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.transform = "translateY(-2px)";
-                  const card = el.querySelector<HTMLElement>(".app-card-inner");
-                  if (card) card.style.borderColor = CLR_ACTIVE;
-                }}
-                onMouseLeave={e => {
-                  if (!app.available) return;
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.transform = "translateY(0)";
-                  const card = el.querySelector<HTMLElement>(".app-card-inner");
-                  if (card) card.style.borderColor = CLR_BORDER;
-                }}
-              >
-                <Card elevation="sm">
-                  <CardBody>
-                    <div
-                      className="app-card-inner"
-                      style={{
-                        alignItems: "center", border: `2px solid ${CLR_BORDER}`, borderRadius: 8,
-                        boxSizing: "border-box", display: "flex", flexDirection: "column",
-                        gap: 16, padding: 24, position: "relative", textAlign: "center",
-                        transition: "border-color 0.2s ease",
-                      }}
-                    >
-                      {!app.available && (
-                        <div style={{ position: "absolute", right: 12, top: 12 }}>
-                          <Badge variant="secondary" size="sm">Coming Soon</Badge>
-                        </div>
-                      )}
-                      <span style={{ filter: app.available ? "none" : "grayscale(1)", fontSize: 48 }}>
-                        {app.icon}
-                      </span>
-                      <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                        <span style={{ color: app.available ? CLR_H : CLR_MUTED, fontSize: 24, fontWeight: 600 }}>
-                          {app.name}
-                        </span>
-                        <span style={{ color: CLR_SUB, fontSize: 18 }}>{app.desc}</span>
-                      </div>
-                      {app.available && (
-                        <DSButton fullWidth size="md" variant="primary">เข้าใช้งาน</DSButton>
-                      )}
-                    </div>
-                  </CardBody>
-                </Card>
-              </div>
-            </Tooltip>
-          ))}
+        {/* Action buttons */}
+        <div style={{ display: "flex", gap: 16 }}>
+          <div style={{ flex: 1 }}>
+            <DSButton fullWidth size="md" variant="outline" onClick={handleLogout}>
+              <span style={{ alignItems: "center", display: "flex", gap: 8, justifyContent: "center" }}>
+                <LogoutIcon />
+                ออกจากระบบ
+              </span>
+            </DSButton>
+          </div>
+          <div style={{ flex: 1 }}>
+            <DSButton fullWidth size="md" variant="primary" onClick={handleAddApp}>
+              <span style={{ alignItems: "center", display: "flex", gap: 8, justifyContent: "center" }}>
+                <PlusIcon />
+                เพิ่มแอปพลิเคชัน
+              </span>
+            </DSButton>
+          </div>
         </div>
-      </main>
 
-      {/* ── Footer ── */}
-      <footer style={{ borderTop: `1px solid ${CLR_BORDER}`, padding: 16, textAlign: "center" }}>
-        <span style={{ color: CLR_MUTED, fontSize: 18 }}>AMS v1.0.0 | Powered by Sellsuki DS3</span>
-      </footer>
-
+      </div>
     </div>
   );
 }
