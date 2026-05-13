@@ -2,15 +2,15 @@
  * AppSelectorPage — Phase 0 (Post-Login)
  * Figma: CRM-Posh-2025 node 476:14001
  * DS3 MCP: DSButton (available)
- * Custom: AppCard (#1), Oc2plusLogo (#2) — see GitHub issues
+ * Custom: AppCard (see GitHub Issue #1)
  */
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { DSButton } from "@uxuissk/design-system";
 import { SellsukiLogo } from "../components/SellsukiLogo";
 import { AppCard } from "../components/custom/AppCard";
-import { Oc2plusLogo } from "../components/custom/Oc2plusLogo";
-import akitaLogo  from "../assets/logo-akita.png";
-import patonaLogo from "../assets/logo-patona.png";
+import akitaLogo   from "../assets/logo-akita.png";
+import patonaLogo  from "../assets/logo-patona.png";
+import oc2plusLogo from "../assets/logo-oc2plus.png";
 import bgLeft  from "../assets/app-selector-bg-left.png";
 import bgRight from "../assets/app-selector-bg-right.png";
 
@@ -32,31 +32,17 @@ const PlusIcon = () => (
 );
 
 const APPS = [
-  {
-    id: "akita",
-    name: "Akita",
-    logo: <img alt="Akita" src={akitaLogo} style={{ height: 54, objectFit: "contain", width: 54 }} />,
-    url: null,
-    available: true,
-  },
-  {
-    id: "patona",
-    name: "Patona",
-    logo: <img alt="Patona" src={patonaLogo} style={{ height: 54, objectFit: "contain", width: 57 }} />,
-    url: "https://sellercenter.patona.online",
-    available: true,
-  },
-  {
-    id: "oc2plus",
-    name: "Oc2plus",
-    logo: <Oc2plusLogo size={72} />,
-    url: null,
-    available: true,
-  },
+  { id: "akita",   name: "Akita",   logo: akitaLogo,   url: null,                                      available: true },
+  { id: "patona",  name: "Patona",  logo: patonaLogo,  url: "https://sellercenter.patona.online",      available: true },
+  { id: "oc2plus", name: "Oc2plus", logo: oc2plusLogo, url: null,                                      available: true },
 ];
 
 export default function AppSelectorPage() {
-  const navigate = useNavigate();
+  const navigate  = useNavigate();
+  const location  = useLocation();
+  const state     = location.state as { email?: string } | null;
+  const email     = state?.email ?? "";
+  const username  = email.includes("@") ? email.split("@")[0] : (email || "Username");
 
   const handleLogout = () => {
     navigate("/ams-ds3", { state: { toast: "ออกจากระบบแล้ว", toastType: "info" } });
@@ -108,7 +94,7 @@ export default function AppSelectorPage() {
           <SellsukiLogo size={55} />
           <div style={{ alignItems: "baseline", display: "flex", fontSize: 36, fontWeight: 700, gap: 8, lineHeight: 1 }}>
             <span style={{ color: CLR_H }}>สวัสดี!,</span>
-            <span style={{ color: CLR_BRAND }}>Username</span>
+            <span style={{ color: CLR_BRAND }}>{username}</span>
           </div>
         </div>
 
@@ -121,7 +107,13 @@ export default function AppSelectorPage() {
             {APPS.map((app) => (
               <AppCard
                 key={app.id}
-                logo={app.logo}
+                logo={
+                  <img
+                    alt={app.name}
+                    src={app.logo}
+                    style={{ height: 72, objectFit: "contain", width: 72 }}
+                  />
+                }
                 name={app.name}
                 disabled={!app.available}
                 onClick={() => app.url ? (window.location.href = app.url) : undefined}
