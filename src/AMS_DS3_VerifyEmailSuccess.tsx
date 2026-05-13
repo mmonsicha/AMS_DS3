@@ -4,18 +4,23 @@
  */
 import { useLocation, useNavigate } from "react-router";
 import { DSButton } from "@uxuissk/design-system";
-import { AMSDS3AccentText, AMSDS3AuthScaffold, AMSDS3LogoHeader, AMSDS3Subtitle  } from "./components/AMSDS3AuthScaffold";
+import { AMSDS3AccentText, AMSDS3AuthScaffold, AMSDS3LogoHeader, AMSDS3Subtitle } from "./components/AMSDS3AuthScaffold";
 
 export default function AMS_DS3_VerifyEmailSuccess() {
-  const navigate = useNavigate();
-  const location = useLocation();
+  const navigate  = useNavigate();
+  const location  = useLocation();
   const state     = location.state as { email?: string; firstName?: string; lastName?: string } | null;
   const email     = state?.email     || "hello@sellsuki.com";
   const firstName = state?.firstName || "";
   const lastName  = state?.lastName  || "";
+  const displayName = firstName ? `${firstName}${lastName ? " " + lastName : ""}`.trim() : "";
 
-  // Persist name so the sign-in page can greet by name after registration
-  if (firstName) localStorage.setItem("ams_display_name", `${firstName}${lastName ? " " + lastName : ""}`.trim());
+  // Persist name for future logins on this device
+  if (displayName) localStorage.setItem("ams_display_name", displayName);
+
+  const handleEnter = () => {
+    navigate("/app-selector", { state: { email, name: displayName } });
+  };
 
   return (
     <AMSDS3AuthScaffold
@@ -28,10 +33,8 @@ export default function AMS_DS3_VerifyEmailSuccess() {
         </>
       }
     >
-      <DSButton fullWidth size="lg"
-        onClick={() => navigate("/ams-ds3", { state: { toast: "สมัครสมาชิกและยืนยันอีเมลสำเร็จแล้ว", toastType: "success" } })}
-      >
-        กลับไปหน้า Sign in AMS_DS3
+      <DSButton fullWidth size="lg" onClick={handleEnter}>
+        เข้าสู่ระบบ
       </DSButton>
     </AMSDS3AuthScaffold>
   );
