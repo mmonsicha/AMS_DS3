@@ -1,7 +1,7 @@
 // DS3: CSS import ต้องเป็น FIRST — ก่อน component import ทุกตัว
 import "@uxuissk/design-system/styles.css";
-// DS3 v3.2.0 Web Components (ssk-*) — register ครั้งเดียวที่ entry
-import "@uxuissk/design-system-core";
+// @uxuissk/design-system-core is installed but intentionally NOT imported.
+// All UI uses @uxuissk/design-system (DS3 MCP) exclusively.
 import "./tailwind.css";
 import "./index.css";
 import { StrictMode } from "react";
