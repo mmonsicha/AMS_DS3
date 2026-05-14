@@ -122,8 +122,8 @@ export default function PatonaShellPage() {
       systemName="Patona"
       navGroups={NAV_GROUPS}
       bottomNavItems={BOTTOM_ITEMS}
+      brand="patona"
       username="Username"
-      userInitials="WW"
       companyName="Sellsuki"
       branchName="สาขาหลัก"
     >

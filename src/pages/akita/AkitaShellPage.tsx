@@ -101,8 +101,8 @@ export default function AkitaShellPage() {
       systemName="Akita"
       navGroups={NAV_GROUPS}
       bottomNavItems={BOTTOM_ITEMS}
+      brand="akita"
       username="Username"
-      userInitials="WW"
       companyName="Sellsuki"
       branchName="สาขาหลัก"
     >

@@ -107,8 +107,8 @@ export default function Oc2plusShellPage() {
       systemName="Oc2plus"
       navGroups={NAV_GROUPS}
       bottomNavItems={BOTTOM_ITEMS}
+      brand="oc2plus"
       username="Username"
-      userInitials="WW"
       companyName="Sellsuki"
       branchName="สาขาหลัก"
     >
