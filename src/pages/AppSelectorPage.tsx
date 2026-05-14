@@ -32,9 +32,9 @@ const PlusIcon = () => (
 );
 
 const APPS = [
-  { id: "akita",   name: "Akita",   logo: akitaLogo,   route: null,      available: true },
-  { id: "patona",  name: "Patona",  logo: patonaLogo,  route: "/patona", available: true },
-  { id: "oc2plus", name: "Oc2plus", logo: oc2plusLogo, route: null,      available: true },
+  { id: "akita",   name: "Akita",   logo: akitaLogo,   route: "/akita",   available: true },
+  { id: "patona",  name: "Patona",  logo: patonaLogo,  route: "/patona",  available: true },
+  { id: "oc2plus", name: "Oc2plus", logo: oc2plusLogo, route: "/oc2plus", available: true },
 ];
 
 export default function AppSelectorPage() {

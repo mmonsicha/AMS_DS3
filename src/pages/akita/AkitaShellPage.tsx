@@ -1,5 +1,5 @@
 /**
- * PatonaShellPage — Patona Seller Center App Shell
+ * AkitaShellPage — Akita Warehouse Management App Shell
  * Figma: CRM-Posh-2025 node 498:1044
  */
 import { AppShell } from "../../components/shell/AppShell";
@@ -13,6 +13,22 @@ function HomeIcon() {
   );
 }
 
+function WarehouseIcon() {
+  return (
+    <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
+    </svg>
+  );
+}
+
+function TruckIcon() {
+  return (
+    <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+    </svg>
+  );
+}
+
 function CubeIcon() {
   return (
     <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
@@ -21,34 +37,10 @@ function CubeIcon() {
   );
 }
 
-function ShoppingCartIcon() {
-  return (
-    <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-    </svg>
-  );
-}
-
-function StorefrontIcon() {
-  return (
-    <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z" />
-    </svg>
-  );
-}
-
 function ChartIcon() {
   return (
     <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
       <path d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
-    </svg>
-  );
-}
-
-function UsersIcon() {
-  return (
-    <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
     </svg>
   );
 }
@@ -82,31 +74,18 @@ const NAV_GROUPS: NavGroup[] = [
     title: "คลังสินค้า",
     defaultExpanded: true,
     items: [
-      { label: "สินค้าของฉัน",  icon: <CubeIcon /> },
-      { label: "เพิ่มสินค้า",   icon: <CubeIcon /> },
+      { label: "รับสินค้าเข้า",    icon: <WarehouseIcon /> },
+      { label: "จัดสินค้าออก",     icon: <TruckIcon /> },
+      { label: "สินค้าคงคลัง",     icon: <CubeIcon /> },
+      { label: "โอนย้ายสินค้า",    icon: <TruckIcon /> },
     ],
   },
   {
-    title: "คำสั่งซื้อ",
-    defaultExpanded: true,
-    items: [
-      { label: "สร้างคำสั่งซื้อ",  icon: <ShoppingCartIcon /> },
-      { label: "คำสั่งซื้อของฉัน", icon: <ShoppingCartIcon /> },
-    ],
-  },
-  {
-    title: "จัดการร้านค้า",
+    title: "รายงาน",
     defaultExpanded: false,
     items: [
-      { label: "บริหารหน้าร้าน", icon: <StorefrontIcon /> },
-      { label: "รายงาน",         icon: <ChartIcon /> },
-    ],
-  },
-  {
-    title: "จัดการลูกค้า",
-    defaultExpanded: false,
-    items: [
-      { label: "สมุดรายชื่อ", icon: <UsersIcon /> },
+      { label: "รายงานสินค้า",     icon: <ChartIcon /> },
+      { label: "รายงานการรับ-จ่าย", icon: <ChartIcon /> },
     ],
   },
 ];
@@ -116,10 +95,10 @@ const BOTTOM_ITEMS = [
   { label: "ตั้งค่า",   icon: <CogIcon /> },
 ];
 
-export default function PatonaShellPage() {
+export default function AkitaShellPage() {
   return (
     <AppShell
-      systemName="Patona"
+      systemName="Akita"
       navGroups={NAV_GROUPS}
       bottomNavItems={BOTTOM_ITEMS}
       username="Username"
@@ -128,19 +107,19 @@ export default function PatonaShellPage() {
       branchName="สาขาหลัก"
     >
       <div style={{
-        alignItems:    "center",
-        border:        "2px dashed #e5e7eb",
-        borderRadius:  12,
-        color:         "#6b7280",
-        display:       "flex",
-        flexDirection: "column",
-        fontSize:      20,
-        gap:           12,
-        justifyContent:"center",
-        minHeight:     400,
+        alignItems:     "center",
+        border:         "2px dashed #e5e7eb",
+        borderRadius:   12,
+        color:          "#6b7280",
+        display:        "flex",
+        flexDirection:  "column",
+        fontSize:       20,
+        gap:            12,
+        justifyContent: "center",
+        minHeight:      400,
       }}>
         <span style={{ fontSize: 48 }}>🚧</span>
-        <span style={{ fontWeight: 600 }}>Patona Seller Center</span>
+        <span style={{ fontWeight: 600 }}>Akita Warehouse Management</span>
         <span style={{ fontSize: 16 }}>กำลังพัฒนา — Phase 2+</span>
       </div>
     </AppShell>

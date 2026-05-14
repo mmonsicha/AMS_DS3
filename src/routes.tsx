@@ -1,7 +1,9 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import DashboardPage from "./pages/DashboardPage";
 import AppSelectorPage from "./pages/AppSelectorPage";
-import PatonaShellPage from "./pages/patona/PatonaShellPage";
+import PatonaShellPage  from "./pages/patona/PatonaShellPage";
+import AkitaShellPage   from "./pages/akita/AkitaShellPage";
+import Oc2plusShellPage from "./pages/oc2plus/Oc2plusShellPage";
 import AMS_DS3 from "./AMS_DS3";
 import AMS_DS3_Register from "./AMS_DS3_Register";
 import AMS_DS3_SetPassword from "./AMS_DS3_SetPassword";
@@ -26,7 +28,9 @@ export const router = createBrowserRouter([
   { path: "/forgot-password/link-expired", element: <Navigate replace to="/ams-ds3/forgot-password/link-expired" /> },
   { path: "/dashboard", element: <DashboardPage /> },
   { path: "/app-selector", element: <AppSelectorPage /> },
-  { path: "/patona", element: <PatonaShellPage /> },
+  { path: "/akita",   element: <AkitaShellPage /> },
+  { path: "/patona",  element: <PatonaShellPage /> },
+  { path: "/oc2plus", element: <Oc2plusShellPage /> },
   { path: "/ams-ds3", element: <AMS_DS3 /> },
   { path: "/ams-ds3/signup", element: <AMS_DS3_SignUp /> },
   { path: "/ams-ds3/signup/register", element: <AMS_DS3_Register /> },
