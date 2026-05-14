@@ -32,9 +32,9 @@ const PlusIcon = () => (
 );
 
 const APPS = [
-  { id: "akita",   name: "Akita",   logo: akitaLogo,   url: null,                                      available: true },
-  { id: "patona",  name: "Patona",  logo: patonaLogo,  url: "https://sellercenter.patona.online",      available: true },
-  { id: "oc2plus", name: "Oc2plus", logo: oc2plusLogo, url: null,                                      available: true },
+  { id: "akita",   name: "Akita",   logo: akitaLogo,   route: null,      available: true },
+  { id: "patona",  name: "Patona",  logo: patonaLogo,  route: "/patona", available: true },
+  { id: "oc2plus", name: "Oc2plus", logo: oc2plusLogo, route: null,      available: true },
 ];
 
 export default function AppSelectorPage() {
@@ -117,7 +117,7 @@ export default function AppSelectorPage() {
                 }
                 name={app.name}
                 disabled={!app.available}
-                onClick={() => app.url ? (window.location.href = app.url) : undefined}
+                onClick={() => app.route ? navigate(app.route) : undefined}
               />
             ))}
           </div>
